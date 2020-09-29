@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Сергей Черненко](https://up.htmlacademy.ru/react/5/user/864217).
-* Наставник: `Неизвестно`.
+* Наставник: [Николай Загорный](https://htmlacademy.ru/profile/id452233).
 
 ---
 
