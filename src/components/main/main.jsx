@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const MainPage = (props) => {
+const Main = (props) => {
   const {name, genre, releaseDate} = props;
   return (
     <React.Fragment>
@@ -271,10 +271,10 @@ const MainPage = (props) => {
   );
 };
 
-MainPage.propTypes = {
+Main.propTypes = {
   name: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   releaseDate: PropTypes.number.isRequired,
 };
 
-export default MainPage;
+export default Main;
