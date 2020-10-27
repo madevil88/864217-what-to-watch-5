@@ -15,9 +15,9 @@ class ListOfFilms extends PureComponent {
     const {films, filmsCount = films.length, onMovieCardClick} = this.props;
 
     return (
-      films.map((film, i) => ({
+      films.map((film, i) => {
         if (i >= filmsCount) {
-          return;
+          return null;
         } else {
           return (
             <React.Fragment key={i}>
@@ -33,7 +33,7 @@ class ListOfFilms extends PureComponent {
             </React.Fragment>
           );
         }
-      }))
+      })
     );
   }
 }
