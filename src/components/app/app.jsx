@@ -9,23 +9,67 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 
 const App = (props) => {
-  const {name, genre, releaseDate} = props;
+  const {films} = props;
 
   return (
 
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Main name={name} genre={genre} releaseDate={releaseDate}/>
-        </Route>
+        <Route exact path="/"
+          render={({history}) => (
+            <Main
+              films={films}
+              onAvatarClick={() =>
+                history.push(`/login`)}
+              onMyListButtonClick={() =>
+                history.push(`/mylist`)}
+              onPlayButtonClick={() =>
+                history.push(`/player/1`)}
+              onMovieCardClick={() =>
+                history.push(`/films/1`)}
+            />
+          )}
+        />
         <Route exact path="/login">
           <SignIn />
         </Route>
-        <Route exact path="/mylist">
-          <MyList />
-        </Route>
-        <Route exact path="/films/:id" component={Film} />
-        <Route exact path="/films/:id/review" component={AddReview} />
+        <Route exact path="/mylist"
+          render={({history}) => (
+            <MyList
+              films={films}
+              onAvatarClick={() =>
+                history.push(`/login`)}
+              onMovieCardClick={() =>
+                history.push(`/films/1`)}
+            />
+          )}
+        />
+        <Route exact path="/films/:id"
+          render={({history}) => (
+            <Film
+              films={films}
+              onAvatarClick={() =>
+                history.push(`/login`)}
+              onMyListButtonClick={() =>
+                history.push(`/mylist`)}
+              onPlayButtonClick={() =>
+                history.push(`/player/1`)}
+              onMovieCardClick={() =>
+                history.push(`/films/2`)}
+              onAddReviewButtonClick={() =>
+                history.push(`/films/1/review`)}
+            />
+          )}
+        />
+        <Route exact path="/films/:id/review"
+          render={({history}) => (
+            <AddReview
+              films={films}
+              onAvatarClick={() =>
+                history.push(`/login`)}
+            />
+          )}
+        />
         <Route exact path="/player/:id" component={Player} />
       </Switch>
     </BrowserRouter>
@@ -33,9 +77,19 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  name: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    released: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    plot: PropTypes.string.isRequired,
+    reviewsCount: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    poster: PropTypes.string.isRequired,
+    durationMinutes: PropTypes.number.isRequired
+  })).isRequired,
 };
 
 export default App;
