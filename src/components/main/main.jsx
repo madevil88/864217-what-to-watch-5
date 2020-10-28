@@ -1,13 +1,10 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import MainProps from "./main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 
 const Main = (props) => {
-  const {films,
-    onAvatarClick,
-    onMyListButtonClick,
-    onPlayButtonClick,
-    onMovieCardClick} = props;
+  const {films} = props;
 
   return (
     <React.Fragment>
@@ -25,11 +22,11 @@ const Main = (props) => {
             </a>
           </div>
           <div className="user-block">
-            <div className="user-block__avatar"
-              onClick={onAvatarClick}
-            >
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            <Link to="/login">
+              <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div>
+            </Link>
           </div>
         </header>
         <div className="movie-card__wrap">
@@ -44,22 +41,18 @@ const Main = (props) => {
                 <span className="movie-card__year">{films[0].released}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button"
-                  onClick={onPlayButtonClick}
-                >
+                <Link to="/player/1" className="btn btn--play movie-card__button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button"
-                  onClick={onMyListButtonClick}
-                >
+                </Link>
+                <Link to="/mylist" className="btn btn--list movie-card__button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -103,7 +96,6 @@ const Main = (props) => {
           <div className="catalog__movies-list">
             <ListOfFilms
               films={films}
-              onMovieCardClick={onMovieCardClick}
             />
           </div>
           <div className="catalog__more">

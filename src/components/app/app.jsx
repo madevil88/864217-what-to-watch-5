@@ -15,62 +15,38 @@ const App = (props) => {
 
     <BrowserRouter>
       <Switch>
-        <Route exact path="/"
-          render={({history}) => (
-            <Main
-              films={films}
-              onAvatarClick={() =>
-                history.push(`/login`)}
-              onMyListButtonClick={() =>
-                history.push(`/mylist`)}
-              onPlayButtonClick={() =>
-                history.push(`/player/1`)}
-              onMovieCardClick={() =>
-                history.push(`/films/1`)}
-            />
-          )}
-        />
+        <Route exact path="/">
+          <Main
+            films={films}
+          />
+        </Route>
         <Route exact path="/login">
           <SignIn />
         </Route>
-        <Route exact path="/mylist"
-          render={({history}) => (
-            <MyList
-              films={films}
-              onAvatarClick={() =>
-                history.push(`/login`)}
-              onMovieCardClick={() =>
-                history.push(`/films/1`)}
-            />
-          )}
-        />
+        <Route exact path="/mylist">
+          <MyList
+            films={films}
+          />
+        </Route>
         <Route exact path="/films/:id"
-          render={({history}) => (
+          render={() => (
             <Film
               films={films}
-              onAvatarClick={() =>
-                history.push(`/login`)}
-              onMyListButtonClick={() =>
-                history.push(`/mylist`)}
-              onPlayButtonClick={() =>
-                history.push(`/player/1`)}
-              onMovieCardClick={() =>
-                history.push(`/films/2`)}
-              onAddReviewButtonClick={() =>
-                history.push(`/films/1/review`)}
             />
           )}
         />
         <Route exact path="/films/:id/review"
-          render={({history}) => (
+          render={() => (
             <AddReview
               films={films}
-              onAvatarClick={() =>
-                history.push(`/login`)}
             />
           )}
         />
-        <Route exact path="/player/:id" component={Player} />
+        <Route exact path="/player/:id"
+          render={() => (
+            <Player />
+          )}
+        />
       </Switch>
     </BrowserRouter>
   );

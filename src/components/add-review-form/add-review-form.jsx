@@ -25,7 +25,6 @@ class AddReviewForm extends PureComponent {
   }
 
   render() {
-
     return (
       <div className="add-review">
         <form action="#" className="add-review__form"

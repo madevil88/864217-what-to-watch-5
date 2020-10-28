@@ -1,9 +1,10 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import MainProps from "../main/main-props";
 import AddReviewForm from "../add-review-form/add-review-form";
 
 const AddReview = (props) => {
-  const {films, onAvatarClick} = props;
+  const {films} = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -16,17 +17,17 @@ const AddReview = (props) => {
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link to="/" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <Link to="/films/1" className="breadcrumbs__link">{films[0].title}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -35,11 +36,11 @@ const AddReview = (props) => {
           </nav>
 
           <div className="user-block">
-            <div className="user-block__avatar"
-              onClick={onAvatarClick}
-            >
-              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            <Link to="/login">
+              <div className="user-block__avatar">
+                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div>
+            </Link>
           </div>
         </header>
 

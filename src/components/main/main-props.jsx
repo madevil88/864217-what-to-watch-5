@@ -15,10 +15,6 @@ const MainProps = () => {
       poster: PropTypes.string.isRequired,
       durationMinutes: PropTypes.number.isRequired
     })).isRequired,
-    onAvatarClick: PropTypes.func.isRequired,
-    onMyListButtonClick: PropTypes.func.isRequired,
-    onPlayButtonClick: PropTypes.func.isRequired,
-    onMovieCardClick: PropTypes.func.isRequired,
   });
 };
 

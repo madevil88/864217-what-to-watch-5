@@ -16,7 +16,6 @@ const MovieCardProps = () => {
       durationMinutes: PropTypes.number.isRequired
     }).isRequired,
     mouseOver: PropTypes.func.isRequired,
-    onMovieCardClick: PropTypes.func.isRequired,
   });
 };
 

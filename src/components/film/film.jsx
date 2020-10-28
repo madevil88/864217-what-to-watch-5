@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {FilmStatus} from "../../const";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
@@ -40,12 +41,7 @@ const getFilmStatus = (rating) => {
 };
 
 const Film = (props) => {
-  const {films,
-    onAvatarClick,
-    onMyListButtonClick,
-    onPlayButtonClick,
-    onMovieCardClick,
-    onAddReviewButtonClick} = props;
+  const {films} = props;
 
   return (
     <React.Fragment>
@@ -59,19 +55,19 @@ const Film = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar"
-                onClick={onAvatarClick}
-              >
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
+              <Link to="/login">
+                <div className="user-block__avatar">
+                  <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                </div>
+              </Link>
             </div>
           </header>
 
@@ -84,28 +80,19 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button"
-                  onClick={onPlayButtonClick}
-                >
+                <Link to="/player/1" className="btn btn--play movie-card__button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button"
-                  onClick={onMyListButtonClick}
-                >
+                </Link>
+                <Link to="/mylist" className="btn btn--list movie-card__button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    onAddReviewButtonClick();
-                  }}
-                >Add review</a>
+                </Link>
+                <Link to="/films/1/review" className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -161,18 +148,17 @@ const Film = (props) => {
             <ListOfFilms
               films = {films}
               filmsCount = {FILMS_COUNT}
-              onMovieCardClick={onMovieCardClick}
             />
           </div>
         </section>
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

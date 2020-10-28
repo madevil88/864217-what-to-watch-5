@@ -12,7 +12,7 @@ class ListOfFilms extends PureComponent {
   }
 
   render() {
-    const {films, filmsCount = films.length, onMovieCardClick} = this.props;
+    const {films, filmsCount = films.length} = this.props;
 
     return (
       films.map((film, i) => {
@@ -28,7 +28,6 @@ class ListOfFilms extends PureComponent {
                     activeCard: film,
                   });
                 }}
-                onMovieCardClick={onMovieCardClick}
               />
             </React.Fragment>
           );
