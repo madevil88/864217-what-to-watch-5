@@ -9,33 +9,63 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 
 const App = (props) => {
-  const {name, genre, releaseDate} = props;
+  const {films} = props;
 
   return (
 
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main name={name} genre={genre} releaseDate={releaseDate}/>
+          <Main
+            films={films}
+          />
         </Route>
         <Route exact path="/login">
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList />
+          <MyList
+            films={films}
+          />
         </Route>
-        <Route exact path="/films/:id" component={Film} />
-        <Route exact path="/films/:id/review" component={AddReview} />
-        <Route exact path="/player/:id" component={Player} />
+        <Route exact path="/films/:id"
+          render={() => (
+            <Film
+              films={films}
+            />
+          )}
+        />
+        <Route exact path="/films/:id/review"
+          render={() => (
+            <AddReview
+              films={films}
+            />
+          )}
+        />
+        <Route exact path="/player/:id"
+          render={() => (
+            <Player />
+          )}
+        />
       </Switch>
     </BrowserRouter>
   );
 };
 
 App.propTypes = {
-  name: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    released: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    plot: PropTypes.string.isRequired,
+    reviewsCount: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    poster: PropTypes.string.isRequired,
+    durationMinutes: PropTypes.number.isRequired
+  })).isRequired,
 };
 
 export default App;
