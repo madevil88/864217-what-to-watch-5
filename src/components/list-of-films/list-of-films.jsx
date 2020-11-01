@@ -8,11 +8,13 @@ class ListOfFilms extends PureComponent {
 
     this.state = {
       activeCard: ``,
+      activePlayerId: -1
     };
   }
 
   render() {
-    const {films, filmsCount = films.length} = this.props;
+    const {films, filmsCount = films.length, renderPlayer} = this.props;
+    const {activePlayerId} = this.state;
 
     return (
       films.map((film, i) => {
@@ -23,11 +25,20 @@ class ListOfFilms extends PureComponent {
             <React.Fragment key={i}>
               <MovieCard
                 film={film}
+                id={i}
                 mouseOver={() => {
                   this.setState({
                     activeCard: film,
                   });
                 }}
+                renderPlayer={renderPlayer}
+                onMouseOverOnCard={() => this.setState({
+                  activePlayerId: activePlayerId === i ? -1 : i
+                })}
+                onMouseOutCard={() => this.setState({
+                  activePlayerId: activePlayerId === -1
+                })}
+                activePlayerId={activePlayerId}
               />
             </React.Fragment>
           );

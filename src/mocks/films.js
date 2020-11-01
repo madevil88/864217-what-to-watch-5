@@ -3,7 +3,7 @@ import {Genre} from "../const";
 export default [
   {
     title: `The Aviator`,
-    src: `https://youtu.be/FebPJlmgldE`,
+    src: `https://www.kino-teatr.ru/video/4862/video_4862_c736.mp4`,
     genre: Genre.DRAMA,
     released: 2004,
     rating: 7.6,
@@ -15,7 +15,7 @@ export default [
     durationMinutes: 163
   }, {
     title: `Forrest Gump`,
-    src: `https://youtu.be/bLvqoHBptjg`,
+    src: `https://www.kino-teatr.ru/video/5703/video_5703_002f.mp4`,
     genre: Genre.DRAMA,
     released: 1994,
     rating: 8.9,
@@ -27,7 +27,7 @@ export default [
     durationMinutes: 142
   }, {
     title: `Inception`,
-    src: `https://youtu.be/YoHD9XEInc0`,
+    src: `https://www.kino-teatr.ru/video/7596/video_7596_4f2a.mp4`,
     genre: Genre.FANTASY,
     released: 2010,
     rating: 8.7,
@@ -39,7 +39,7 @@ export default [
     durationMinutes: 148
   }, {
     title: `The Lion King`,
-    src: `https://youtu.be/7TavVZMewpY`,
+    src: `https://www.kino-teatr.ru/video/7564/video_7564_e5de.mp4`,
     genre: Genre.ANIMATED_CARTOON,
     released: 1994,
     rating: 8.8,
@@ -51,7 +51,7 @@ export default [
     durationMinutes: 88
   }, {
     title: `Pulp Fiction`,
-    src: `https://youtu.be/s7EdQ4FqbhY`,
+    src: `https://www.kino-teatr.ru/video/487/pulpfiction.mp4`,
     genre: Genre.COMEDY,
     released: 1994,
     rating: 8.6,
@@ -63,7 +63,7 @@ export default [
     durationMinutes: 154
   }, {
     title: `The Prestige`,
-    src: `https://youtu.be/ObGVA1WOqyE`,
+    src: `https://www.kino-teatr.ru/video/8049/video_8049_f682.mp4`,
     genre: Genre.THRILLER,
     released: 2006,
     rating: 8.5,
@@ -75,7 +75,7 @@ export default [
     durationMinutes: 125
   }, {
     title: `A Beautiful Mind`,
-    src: `https://youtu.be/9wZM7CQY130`,
+    src: `https://www.kino-teatr.ru/video/8131/video_8131_9fd2.mp4`,
     genre: Genre.BIOGRAPHICAL,
     released: 2001,
     rating: 8.6,
@@ -87,7 +87,7 @@ export default [
     durationMinutes: 135
   }, {
     title: `Back to the Future`,
-    src: `https://youtu.be/qvsgGtivCgs`,
+    src: `https://ivi-vod-ru-cis.gcdn.co/mp4-shq/bZd9yDPVGGaJW4F30kSs0Q,1604122321/storage28/contents/0/e/5dc2a73c48350fc169f7e3ee28a462.mp4`,
     genre: Genre.FANTASY,
     released: 1985,
     rating: 8.6,
