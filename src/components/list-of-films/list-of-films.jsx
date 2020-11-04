@@ -17,7 +17,10 @@ class ListOfFilms extends PureComponent {
     const {activePlayerId} = this.state;
 
     return (
-      films.map((film, i) => {
+      films.filter((film) => {
+        return films[0].genre === film.genre;
+      })
+      .map((film, i) => {
         if (i >= filmsCount) {
           return null;
         } else {
