@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import {FilmTabs} from "../../const";
 import {Link} from "react-router-dom";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
@@ -12,7 +13,7 @@ class Film extends PureComponent {
 
     this.state = {
       inList: false,
-      selectedSection: `overview`
+      selectedSection: FilmTabs.OVERVIEW
     };
   }
 
@@ -101,6 +102,7 @@ class Film extends PureComponent {
               <ListOfFilms
                 films = {films}
                 filmsCount = {FILMS_COUNT}
+                filterGenre = {films[0].genre}
               />
             </div>
           </section>

@@ -1,4 +1,5 @@
 import React from "react";
+import {FilmTabs} from "../../const";
 import MainProps from "../main/main-props";
 import Overview from "../overview/overview";
 import Details from "../details/details";
@@ -6,15 +7,15 @@ import Reviews from "../reviews/reviews";
 
 const getRenderComponent = (selectedSection, film, reviews) => {
   switch (selectedSection) {
-    case `overview`:
+    case FilmTabs.OVERVIEW:
       return <Overview
         film={film}
       />;
-    case `details`:
+    case FilmTabs.DETAILS:
       return <Details
         film={film}
       />;
-    case `reviews`:
+    case FilmTabs.REVIEWS:
       return <Reviews
         film={film}
         reviews={reviews}
@@ -30,24 +31,24 @@ const Tabs = (props) => {
     <React.Fragment>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className={selectedSection === `overview` ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
-            <a href="#" className="movie-nav__link" data-section="overview"
+          <li className={selectedSection === FilmTabs.OVERVIEW ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
+            <a href="#" className="movie-nav__link" data-section={FilmTabs.OVERVIEW}
               onClick={(evt) => {
                 evt.preventDefault();
                 onLinkClick(evt);
               }}
             >Overview</a>
           </li>
-          <li className={selectedSection === `details` ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
-            <a href="#" className="movie-nav__link" data-section="details"
+          <li className={selectedSection === FilmTabs.DETAILS ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
+            <a href="#" className="movie-nav__link" data-section={FilmTabs.DETAILS}
               onClick={(evt) => {
                 evt.preventDefault();
                 onLinkClick(evt);
               }}
             >Details</a>
           </li>
-          <li className={selectedSection === `reviews` ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
-            <a href="#" className="movie-nav__link" data-section="reviews"
+          <li className={selectedSection === FilmTabs.REVIEWS ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
+            <a href="#" className="movie-nav__link" data-section={FilmTabs.REVIEWS}
               onClick={(evt) => {
                 evt.preventDefault();
                 onLinkClick(evt);

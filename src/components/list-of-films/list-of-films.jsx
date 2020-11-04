@@ -13,12 +13,15 @@ class ListOfFilms extends PureComponent {
   }
 
   render() {
-    const {films, filmsCount = films.length, renderPlayer} = this.props;
+    const {films, filmsCount = films.length, filterGenre} = this.props;
     const {activePlayerId} = this.state;
 
     return (
       films.filter((film) => {
-        return films[0].genre === film.genre;
+        if (filterGenre) {
+          return filterGenre === film.genre;
+        }
+        return true;
       })
       .map((film, i) => {
         if (i >= filmsCount) {
@@ -34,7 +37,6 @@ class ListOfFilms extends PureComponent {
                     activeCard: film,
                   });
                 }}
-                renderPlayer={renderPlayer}
                 onMouseOverOnCard={() => this.setState({
                   activePlayerId: activePlayerId === i ? -1 : i
                 })}
