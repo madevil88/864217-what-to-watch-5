@@ -15,4 +15,10 @@ const FilmStatus = {
   VERY_BAD: `Very bad`,
 };
 
-export {Genre, FilmStatus};
+const FilmTabs = {
+  OVERVIEW: `overview`,
+  DETAILS: `details`,
+  REVIEWS: `reviews`
+};
+
+export {Genre, FilmStatus, FilmTabs};

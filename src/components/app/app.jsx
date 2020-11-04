@@ -9,7 +9,7 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 
 const App = (props) => {
-  const {films} = props;
+  const {films, reviews} = props;
 
   return (
 
@@ -32,6 +32,7 @@ const App = (props) => {
           render={() => (
             <Film
               films={films}
+              reviews={reviews}
             />
           )}
         />
@@ -65,6 +66,13 @@ App.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     poster: PropTypes.string.isRequired,
     durationMinutes: PropTypes.number.isRequired
+  })).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    firstName: PropTypes.string.isRequired,
+    secondName: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
   })).isRequired,
 };
 

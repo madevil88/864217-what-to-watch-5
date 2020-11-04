@@ -87,7 +87,7 @@ export default [
     durationMinutes: 135
   }, {
     title: `Back to the Future`,
-    src: `https://ivi-vod-ru-cis.gcdn.co/mp4-shq/bZd9yDPVGGaJW4F30kSs0Q,1604122321/storage28/contents/0/e/5dc2a73c48350fc169f7e3ee28a462.mp4`,
+    src: `https://www.kino-teatr.ru/video/8131/video_8131_9fd2.mp4`,
     genre: Genre.FANTASY,
     released: 1985,
     rating: 8.6,
