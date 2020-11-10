@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {FilmTabs} from "../../const";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import Tabs from "../tabs/tabs";
@@ -18,7 +19,7 @@ class Film extends PureComponent {
   }
 
   render() {
-    const {films, reviews} = this.props;
+    const {films, currentGenre, reviews} = this.props;
 
     return (
       <React.Fragment>
@@ -102,7 +103,7 @@ class Film extends PureComponent {
               <ListOfFilms
                 films = {films}
                 filmsCount = {FILMS_COUNT}
-                filterGenre = {films[0].genre}
+                currentGenre = {currentGenre}
               />
             </div>
           </section>
@@ -128,4 +129,11 @@ class Film extends PureComponent {
 
 Film.propTypes = MainProps.propTypes;
 
-export default Film;
+const mapStateToProps = (state) => ({
+  films: state.films,
+  currentGenre: state.currentGenre,
+  reviews: state.reviews
+});
+
+export {Film};
+export default connect(mapStateToProps)(Film);
