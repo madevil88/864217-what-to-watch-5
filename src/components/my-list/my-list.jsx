@@ -1,10 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 
 const MyList = (props) => {
-  const {films} = props;
+  const {films, currentGenre} = props;
 
   return (
     <div className="user-page">
@@ -34,6 +35,7 @@ const MyList = (props) => {
         <div className="catalog__movies-list">
           <ListOfFilms
             films={films}
+            currentGenre={currentGenre}
           />
         </div>
       </section>
@@ -57,4 +59,10 @@ const MyList = (props) => {
 
 MyList.propTypes = MainProps.propTypes;
 
-export default MyList;
+const mapStateToProps = (state) => ({
+  films: state.films,
+  currentGenre: state.currentGenre
+});
+
+export {MyList};
+export default connect(mapStateToProps)(MyList);

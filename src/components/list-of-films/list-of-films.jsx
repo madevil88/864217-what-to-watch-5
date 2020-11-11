@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import {INITIAL_GENRE} from "../../const";
 import MainProps from "../main/main-props";
 import MovieCard from "../movie-card/movie-card";
 
@@ -13,13 +14,13 @@ class ListOfFilms extends PureComponent {
   }
 
   render() {
-    const {films, filmsCount = films.length, filterGenre} = this.props;
+    const {films, filmsCount = films.length, currentGenre} = this.props;
     const {activePlayerId} = this.state;
 
     return (
       films.filter((film) => {
-        if (filterGenre) {
-          return filterGenre === film.genre;
+        if (currentGenre !== INITIAL_GENRE) {
+          return currentGenre === film.genre;
         }
         return true;
       })
