@@ -1,10 +1,10 @@
 import React from "react";
-import {INITIAL_GENRE} from "../../const";
+import {InitialState} from "../../const";
 
 const ListOfGenres = (props) => {
   const {films, currentGenre, getSelectedGenre} = props;
 
-  const unique = new Set([INITIAL_GENRE]);
+  const unique = new Set([InitialState.GENRE]);
 
   films.forEach((film) => {
     unique.add(film.genre);

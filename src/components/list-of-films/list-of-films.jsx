@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {INITIAL_GENRE} from "../../const";
+import {InitialState} from "../../const";
 import MainProps from "../main/main-props";
 import MovieCard from "../movie-card/movie-card";
 
@@ -19,7 +19,7 @@ class ListOfFilms extends PureComponent {
 
     return (
       films.filter((film) => {
-        if (currentGenre !== INITIAL_GENRE) {
+        if (currentGenre !== InitialState.GENRE) {
           return currentGenre === film.genre;
         }
         return true;

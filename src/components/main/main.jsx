@@ -5,9 +5,15 @@ import {ActionCreator} from "../../store/action";
 import MainProps from "./main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import ListOfGenres from "../list-of-genres/list-of-genres";
+import ShowMoreButton from "../show-more-button/show-more-button";
 
 const Main = (props) => {
-  const {films, currentGenre, getSelectedGenre} = props;
+  const {films,
+    currentGenre,
+    getSelectedGenre,
+    filmsCount,
+    getShowMoreStatus,
+    isShowMoreButton} = props;
 
   return (
     <React.Fragment>
@@ -75,11 +81,14 @@ const Main = (props) => {
             <ListOfFilms
               films={films}
               currentGenre={currentGenre}
+              filmsCount={filmsCount}
             />
           </div>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {isShowMoreButton && <ShowMoreButton
+            getShowMoreStatus={getShowMoreStatus}
+            allFilmsCount={films.length}
+            showFilmsCount={filmsCount}
+          />}
         </section>
         <footer className="page-footer">
           <div className="logo">
@@ -102,12 +111,17 @@ Main.propTypes = MainProps.propTypes;
 
 const mapStateToProps = (state) => ({
   films: state.films,
-  currentGenre: state.currentGenre
+  currentGenre: state.currentGenre,
+  filmsCount: state.filmsCount,
+  isShowMoreButton: state.isShowMoreButton,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getSelectedGenre(selectGenre) {
     dispatch(ActionCreator.getSelectedGenre(selectGenre));
+  },
+  getShowMoreStatus() {
+    dispatch(ActionCreator.incrementFilmsCount());
   },
 });
 
