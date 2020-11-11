@@ -86,8 +86,6 @@ const Main = (props) => {
           </div>
           {isShowMoreButton && <ShowMoreButton
             getShowMoreStatus={getShowMoreStatus}
-            allFilmsCount={films.length}
-            showFilmsCount={filmsCount}
           />}
         </section>
         <footer className="page-footer">

@@ -17,6 +17,8 @@ const reducer = (state = initialState, action) => {
     case ActionType.SELECT_GENRE:
       return extend(state, {
         currentGenre: action.payload,
+        filmsCount: InitialState.FILMS_COUNT,
+        isShowMoreButton: true,
       });
     case ActionType.INCREMENT_FILMS_COUNT:
       const currentFilmsCount = state.filmsCount + action.payload;
