@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import {FilmTabs} from "../../const";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import Tabs from "../tabs/tabs";
@@ -19,7 +20,7 @@ class Film extends PureComponent {
   }
 
   render() {
-    const {films, currentGenre, reviews} = this.props;
+    const {films, currentGenre, reviews, getFilteredFilmsCount} = this.props;
 
     return (
       <React.Fragment>
@@ -104,6 +105,7 @@ class Film extends PureComponent {
                 films = {films}
                 filmsCount = {FILMS_COUNT}
                 currentGenre = {currentGenre}
+                getFilteredFilmsCount={getFilteredFilmsCount}
               />
             </div>
           </section>
@@ -135,5 +137,11 @@ const mapStateToProps = (state) => ({
   reviews: state.reviews
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  getFilteredFilmsCount(filteredFilmsCount) {
+    dispatch(ActionCreator.getFilteredFilmsCount(filteredFilmsCount));
+  },
+});
+
 export {Film};
-export default connect(mapStateToProps)(Film);
+export default connect(mapStateToProps, mapDispatchToProps)(Film);

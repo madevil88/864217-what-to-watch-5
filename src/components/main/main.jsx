@@ -13,7 +13,8 @@ const Main = (props) => {
     getSelectedGenre,
     filmsCount,
     getShowMoreStatus,
-    isShowMoreButton} = props;
+    isShowMoreButton,
+    getFilteredFilmsCount} = props;
 
   return (
     <React.Fragment>
@@ -82,6 +83,7 @@ const Main = (props) => {
               films={films}
               currentGenre={currentGenre}
               filmsCount={filmsCount}
+              getFilteredFilmsCount={getFilteredFilmsCount}
             />
           </div>
           {isShowMoreButton && <ShowMoreButton
@@ -120,6 +122,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getShowMoreStatus() {
     dispatch(ActionCreator.incrementFilmsCount());
+  },
+  getFilteredFilmsCount(filteredFilmsCount) {
+    dispatch(ActionCreator.getFilteredFilmsCount(filteredFilmsCount));
   },
 });
 

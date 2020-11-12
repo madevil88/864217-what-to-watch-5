@@ -9,6 +9,7 @@ const initialState = {
   films,
   reviews,
   filmsCount: InitialState.FILMS_COUNT,
+  filteredFilmsCount: films.length,
   isShowMoreButton: true,
 };
 
@@ -18,18 +19,30 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         currentGenre: action.payload,
         filmsCount: InitialState.FILMS_COUNT,
-        isShowMoreButton: true,
       });
     case ActionType.INCREMENT_FILMS_COUNT:
-      const currentFilmsCount = state.filmsCount + action.payload;
-      if (currentFilmsCount >= films.length) {
+      const incrementFilmsCount = state.filmsCount + action.payload;
+
+      if (state.filteredFilmsCount <= incrementFilmsCount) {
         return extend(state, {
-          filmsCount: films.length,
           isShowMoreButton: false,
+          filmsCount: incrementFilmsCount
         });
       }
       return extend(state, {
-        filmsCount: currentFilmsCount
+        isShowMoreButton: true,
+        filmsCount: incrementFilmsCount
+      });
+    case ActionType.FILTERED_FILMS_COUNT:
+      if (action.payload <= state.filmsCount) {
+        return extend(state, {
+          isShowMoreButton: false,
+          filteredFilmsCount: action.payload,
+        });
+      }
+      return extend(state, {
+        isShowMoreButton: true,
+        filteredFilmsCount: action.payload,
       });
   }
   return state;

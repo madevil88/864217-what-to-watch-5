@@ -13,18 +13,32 @@ class ListOfFilms extends PureComponent {
     };
   }
 
+  // filteredFilms(films, currentGenre) {
+  //   return films.filter((film) => {
+  //     if (currentGenre !== InitialState.GENRE) {
+  //       return currentGenre === film.genre;
+  //     }
+  //     return true;
+  //   });
+  // }
+
+  getFilteredFilms(films, currentGenre) {
+    const filteredFilms = films.filter((film) => {
+      if (currentGenre !== InitialState.GENRE) {
+        return currentGenre === film.genre;
+      }
+      return true;
+    });
+    this.props.getFilteredFilmsCount(filteredFilms.length);
+    return filteredFilms;
+  }
+
   render() {
     const {films, filmsCount = films.length, currentGenre} = this.props;
     const {activePlayerId} = this.state;
 
     return (
-      films.filter((film) => {
-        if (currentGenre !== InitialState.GENRE) {
-          return currentGenre === film.genre;
-        }
-        return true;
-      })
-      .map((film, i) => {
+      this.getFilteredFilms(films, currentGenre).map((film, i) => {
         if (i >= filmsCount) {
           return null;
         } else {

@@ -1,11 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 
 const MyList = (props) => {
-  const {films, currentGenre} = props;
+  const {films, currentGenre, getFilteredFilmsCount} = props;
 
   return (
     <div className="user-page">
@@ -36,6 +37,7 @@ const MyList = (props) => {
           <ListOfFilms
             films={films}
             currentGenre={currentGenre}
+            getFilteredFilmsCount={getFilteredFilmsCount}
           />
         </div>
       </section>
@@ -64,5 +66,11 @@ const mapStateToProps = (state) => ({
   currentGenre: state.currentGenre
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  getFilteredFilmsCount(filteredFilmsCount) {
+    dispatch(ActionCreator.getFilteredFilmsCount(filteredFilmsCount));
+  },
+});
+
 export {MyList};
-export default connect(mapStateToProps)(MyList);
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);
