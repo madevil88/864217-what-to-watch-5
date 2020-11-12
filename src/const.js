@@ -1,4 +1,7 @@
-const INITIAL_GENRE = `All genres`;
+const InitialState = {
+  GENRE: `All genres`,
+  FILMS_COUNT: 8
+};
 
 const Genre = {
   ANIMATED_CARTOON: `Animated cartoon`,
@@ -23,4 +26,4 @@ const FilmTabs = {
   REVIEWS: `reviews`
 };
 
-export {INITIAL_GENRE, Genre, FilmStatus, FilmTabs};
+export {InitialState, Genre, FilmStatus, FilmTabs};
