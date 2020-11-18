@@ -20,10 +20,10 @@ const FilmStatus = {
   VERY_BAD: `Very bad`,
 };
 
-const FilmTabs = {
-  OVERVIEW: `overview`,
-  DETAILS: `details`,
-  REVIEWS: `reviews`
+const TabsMap = {
+  0: `Overview`,
+  1: `Details`,
+  2: `Reviews`
 };
 
-export {InitialState, Genre, FilmStatus, FilmTabs};
+export {InitialState, Genre, FilmStatus, TabsMap};

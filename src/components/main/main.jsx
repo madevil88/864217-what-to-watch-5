@@ -6,6 +6,11 @@ import MainProps from "./main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import ListOfGenres from "../list-of-genres/list-of-genres";
 import ShowMoreButton from "../show-more-button/show-more-button";
+import withActiveCard from "../../hocs/with-active-card/with-active-card";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+
+const ListOfFilmsWrapped = withActiveItem(withActiveCard(ListOfFilms));
+const ListOfGenresWrapped = withActiveItem(ListOfGenres);
 
 const Main = (props) => {
   const {films,
@@ -72,14 +77,13 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ul className="catalog__genres-list">
-            <ListOfGenres
+            <ListOfGenresWrapped
               films={films}
-              currentGenre={currentGenre}
               getSelectedGenre={getSelectedGenre}
             />
           </ul>
           <div className="catalog__movies-list">
-            <ListOfFilms
+            <ListOfFilmsWrapped
               films={films}
               currentGenre={currentGenre}
               filmsCount={filmsCount}

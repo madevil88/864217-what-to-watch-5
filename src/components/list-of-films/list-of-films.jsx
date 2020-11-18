@@ -1,72 +1,41 @@
-import React, {PureComponent} from "react";
-import {InitialState} from "../../const";
+import React from "react";
 import MainProps from "../main/main-props";
 import MovieCard from "../movie-card/movie-card";
 
-class ListOfFilms extends PureComponent {
-  constructor(props) {
-    super(props);
+const ListOfFilms = (props) => {
 
-    this.state = {
-      activeCard: ``,
-      activePlayerId: -1
-    };
-  }
+  const {films,
+    filmsCount = films.length,
+    currentGenre,
+    activeId,
+    getFilteredFilms,
+    getFilteredFilmsCount,
+    handleOverOnCard,
+    handleOverOnItem,
+    handleOutItem
+  } = props;
 
-  // filteredFilms(films, currentGenre) {
-  //   return films.filter((film) => {
-  //     if (currentGenre !== InitialState.GENRE) {
-  //       return currentGenre === film.genre;
-  //     }
-  //     return true;
-  //   });
-  // }
-
-  getFilteredFilms(films, currentGenre) {
-    const filteredFilms = films.filter((film) => {
-      if (currentGenre !== InitialState.GENRE) {
-        return currentGenre === film.genre;
+  return (
+    getFilteredFilms(films, currentGenre, getFilteredFilmsCount).map((film, i) => {
+      if (i >= filmsCount) {
+        return null;
+      } else {
+        return (
+          <React.Fragment key={i}>
+            <MovieCard
+              film={film}
+              id={i}
+              onMouseOverOnCard={handleOverOnCard}
+              onMouseOverOnItem={handleOverOnItem}
+              onMouseOutItem={handleOutItem}
+              activeId={activeId}
+            />
+          </React.Fragment>
+        );
       }
-      return true;
-    });
-    this.props.getFilteredFilmsCount(filteredFilms.length);
-    return filteredFilms;
-  }
-
-  render() {
-    const {films, filmsCount = films.length, currentGenre} = this.props;
-    const {activePlayerId} = this.state;
-
-    return (
-      this.getFilteredFilms(films, currentGenre).map((film, i) => {
-        if (i >= filmsCount) {
-          return null;
-        } else {
-          return (
-            <React.Fragment key={i}>
-              <MovieCard
-                film={film}
-                id={i}
-                mouseOver={() => {
-                  this.setState({
-                    activeCard: film,
-                  });
-                }}
-                onMouseOverOnCard={() => this.setState({
-                  activePlayerId: activePlayerId === i ? -1 : i
-                })}
-                onMouseOutCard={() => this.setState({
-                  activePlayerId: activePlayerId === -1
-                })}
-                activePlayerId={activePlayerId}
-              />
-            </React.Fragment>
-          );
-        }
-      })
-    );
-  }
-}
+    })
+  );
+};
 
 ListOfFilms.propTypes = MainProps.propTypes;
 
