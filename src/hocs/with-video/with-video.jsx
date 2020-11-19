@@ -1,5 +1,5 @@
 import React, {createRef, PureComponent} from "react";
-import MainProps from "../main/main-props";
+import MainProps from "../../components/main/main-props";
 
 const FilmSize = {
   WIDTH: 280,

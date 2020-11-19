@@ -1,19 +1,33 @@
 import React from "react";
 import MainProps from "../main/main-props";
+import {InitialState} from "../../const";
 import MovieCard from "../movie-card/movie-card";
+import withActiveCard from "../../hocs/with-active-card/with-active-card";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+
+const InitialActivePlayerId = -1;
+
+const MovieCardWrapped = withActiveItem(withActiveCard(MovieCard));
+
+const getFilteredFilms = (films, currentGenre, getFilteredFilmsCount) => {
+  const filteredFilms = films.filter((film) => {
+    if (currentGenre !== InitialState.GENRE) {
+      return currentGenre === film.genre;
+    }
+    return true;
+  });
+  getFilteredFilmsCount(filteredFilms.length);
+  return filteredFilms;
+};
 
 const ListOfFilms = (props) => {
 
   const {films,
     filmsCount = films.length,
     currentGenre,
-    activeId,
-    getFilteredFilms,
     getFilteredFilmsCount,
-    handleOverOnCard,
-    handleOverOnItem,
-    handleOutItem
   } = props;
+
 
   return (
     getFilteredFilms(films, currentGenre, getFilteredFilmsCount).map((film, i) => {
@@ -22,13 +36,10 @@ const ListOfFilms = (props) => {
       } else {
         return (
           <React.Fragment key={i}>
-            <MovieCard
+            <MovieCardWrapped
               film={film}
               id={i}
-              onMouseOverOnCard={handleOverOnCard}
-              onMouseOverOnItem={handleOverOnItem}
-              onMouseOutItem={handleOutItem}
-              activeId={activeId}
+              InitialActivePlayerId={InitialActivePlayerId}
             />
           </React.Fragment>
         );

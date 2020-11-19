@@ -9,7 +9,7 @@ import ShowMoreButton from "../show-more-button/show-more-button";
 import withActiveCard from "../../hocs/with-active-card/with-active-card";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
-const ListOfFilmsWrapped = withActiveItem(withActiveCard(ListOfFilms));
+const ListOfFilmsWrapped = withActiveCard(ListOfFilms);
 const ListOfGenresWrapped = withActiveItem(ListOfGenres);
 
 const Main = (props) => {

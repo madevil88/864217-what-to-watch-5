@@ -1,9 +1,8 @@
-import React from "react";
-import {InitialState} from "../../const";
+import React, {PureComponent} from "react";
 import MainProps from "../../components/main/main-props";
 
 const withActiveCard = (Component) => {
-  class WithActiveCard extends React.Component {
+  class WithActiveCard extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -13,17 +12,6 @@ const withActiveCard = (Component) => {
       };
 
       this.handleOverOnCard = this.handleOverOnCard.bind(this);
-    }
-
-    getFilteredFilms(films, currentGenre, getFilteredFilmsCount) {
-      const filteredFilms = films.filter((film) => {
-        if (currentGenre !== InitialState.GENRE) {
-          return currentGenre === film.genre;
-        }
-        return true;
-      });
-      getFilteredFilmsCount(filteredFilms.length);
-      return filteredFilms;
     }
 
     handleOverOnCard(film) {
@@ -39,16 +27,9 @@ const withActiveCard = (Component) => {
         <Component
           {...this.props}
           activeCard={activeCard}
-          getFilteredFilms={this.getFilteredFilms}
           handleOverOnCard={this.handleOverOnCard}
         />
       );
-    }
-
-    shouldComponentUpdate(nextProps) {
-      const {currentGenre} = this.props;
-      return !(currentGenre === nextProps.currentGenre);
-
     }
   }
 

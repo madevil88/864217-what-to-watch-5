@@ -7,14 +7,8 @@ const withActiveItem = (Component) => {
       super(props);
 
       this.state = {
-        activeId: 0
+        activeId: (props.InitialActivePlayerId || 0)
       };
-
-      if (Component.name === `WithActiveCard`) {
-        this.state = {
-          activeId: -1
-        };
-      }
 
       this.handleOverOnItem = this.handleOverOnItem.bind(this);
       this.handleOutItem = this.handleOutItem.bind(this);
