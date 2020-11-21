@@ -2,7 +2,7 @@ import React from "react";
 import {InitialState} from "../../const";
 
 const ListOfGenres = (props) => {
-  const {films, getSelectedGenre, handleOnClick, activeId} = props;
+  const {films, getSelectedGenre, handleActiveItem, activeItem} = props;
 
   const unique = new Set([InitialState.GENRE]);
 
@@ -15,12 +15,12 @@ const ListOfGenres = (props) => {
     listOfGenres.map((genre, i) => (
       <li
         key={i}
-        className={activeId === i ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}
+        className={activeItem === i ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}
       >
         <a href="#" className="catalog__genres-link"
           onClick={(evt) => {
             evt.preventDefault();
-            handleOnClick(i);
+            handleActiveItem(i);
             getSelectedGenre(evt.target.textContent);
           }}
         >{genre}</a>

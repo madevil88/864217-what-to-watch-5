@@ -2,12 +2,11 @@ import React from "react";
 import MainProps from "../main/main-props";
 import {InitialState} from "../../const";
 import MovieCard from "../movie-card/movie-card";
-import withActiveCard from "../../hocs/with-active-card/with-active-card";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
-const InitialActivePlayerId = -1;
+const INITIAL_ACTIVE_ITEM = -1;
 
-const MovieCardWrapped = withActiveItem(withActiveCard(MovieCard));
+const MovieCardWrapped = withActiveItem(MovieCard);
 
 const getFilteredFilms = (films, currentGenre, getFilteredFilmsCount) => {
   const filteredFilms = films.filter((film) => {
@@ -39,7 +38,7 @@ const ListOfFilms = (props) => {
             <MovieCardWrapped
               film={film}
               id={i}
-              InitialActivePlayerId={InitialActivePlayerId}
+              initialActiveItem={INITIAL_ACTIVE_ITEM}
             />
           </React.Fragment>
         );

@@ -25,7 +25,7 @@ const getRenderComponent = (activeId, film, reviews) => {
 };
 
 const Tabs = (props) => {
-  const {activeId, handleOnClick, film, reviews} = props;
+  const {activeItem, handleActiveItem, film, reviews} = props;
 
   return (
     <React.Fragment>
@@ -33,11 +33,11 @@ const Tabs = (props) => {
         <ul className="movie-nav__list">
           {Object.values(TabsMap).map((tab, i) => {
             return (
-              <li key={i} className={activeId === i ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
+              <li key={i} className={activeItem === i ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}>
                 <a href="#" className="movie-nav__link"
                   onClick={(evt) => {
                     evt.preventDefault();
-                    handleOnClick(i);
+                    handleActiveItem(i);
                   }}
                 >{TabsMap[i]}</a>
               </li>
@@ -46,7 +46,7 @@ const Tabs = (props) => {
           )}
         </ul>
       </nav>
-      {getRenderComponent(activeId, film, reviews)}
+      {getRenderComponent(activeItem, film, reviews)}
     </React.Fragment>
   );
 };

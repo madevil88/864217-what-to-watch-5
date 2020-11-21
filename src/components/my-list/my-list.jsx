@@ -4,10 +4,9 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
-import withActiveCard from "../../hocs/with-active-card/with-active-card";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
-const ListOfFilmsWrapped = withActiveItem(withActiveCard(ListOfFilms));
+const ListOfFilmsWrapped = withActiveItem(ListOfFilms);
 
 const MyList = (props) => {
   const {films, currentGenre, getFilteredFilmsCount} = props;

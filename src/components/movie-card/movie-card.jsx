@@ -8,27 +8,26 @@ const VideoPlayerWrapped = withVideo(VideoPlayer);
 const DELAY_MS = 1000;
 
 const MovieCard = (props) => {
-  const {film, id, handleOverOnCard, handleOverOnItem, handleOutItem, activeId} = props;
+  const {film, id, handleActiveItem, activeItem} = props;
 
   return (
     <article className="small-movie-card catalog__movies-card"
       onMouseOver={() => {
         setTimeout(() => {
-          handleOverOnCard(film);
-          handleOverOnItem(id);
+          handleActiveItem(id);
         }, DELAY_MS);
       }}
       onMouseOut={() => {
         setTimeout(() => {
-          handleOutItem();
+          handleActiveItem();
         }, DELAY_MS);
       }}
     >
       <VideoPlayerWrapped
         film={film}
         id={id}
-        isPlaying={id === activeId}
-        activeId={activeId}
+        isPlaying={id === activeItem}
+        activeItem={activeItem}
       />
     </article>
   );

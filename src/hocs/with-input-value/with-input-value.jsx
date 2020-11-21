@@ -11,11 +11,6 @@ const withInputValue = (Component) => {
         reviewText: ``
       };
       this.handleFieldChange = this.handleFieldChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(evt) {
-      evt.preventDefault();
     }
 
     handleFieldChange(evt) {
@@ -34,7 +29,6 @@ const withInputValue = (Component) => {
           {...this.props}
           ratingInput={ratingInput}
           reviewText={reviewText}
-          handleSubmit={this.handleSubmit}
           handleFieldChange={this.handleFieldChange}
         />
       );

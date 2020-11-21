@@ -3,12 +3,12 @@ import {Link} from "react-router-dom";
 import VideoPlayerProps from "./video-player-props";
 
 const VideoPlayer = (props) => {
-  const {film, id, activeId, children} = props;
+  const {film, id, activeItem, children} = props;
 
   return (
     <React.Fragment>
       <div className="small-movie-card__image">
-        {!(id === activeId) && <img src={film.poster} alt={film.title} width="280" height="175" />}
+        {!(id === activeItem) && <img src={film.poster} alt={film.title} width="280" height="175" />}
         {children}
       </div>
       <h3 className="small-movie-card__title">

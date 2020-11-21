@@ -7,42 +7,32 @@ const withActiveItem = (Component) => {
       super(props);
 
       this.state = {
-        activeId: (props.InitialActivePlayerId || 0)
+        activeItem: (props.initialActiveItem || 0)
       };
 
-      this.handleOverOnItem = this.handleOverOnItem.bind(this);
-      this.handleOutItem = this.handleOutItem.bind(this);
-      this.handleOnClick = this.handleOnClick.bind(this);
+      this.handleActiveItem = this.handleActiveItem.bind(this);
     }
 
-    handleOverOnItem(id) {
-      this.setState({
-        activeId: this.activeId === id ? -1 : id
-      });
-    }
-
-    handleOutItem() {
-      this.setState({
-        activeId: this.activeId === -1
-      });
-    }
-
-    handleOnClick(id) {
-      this.setState({
-        activeId: this.activeId = id
-      });
+    handleActiveItem(id) {
+      if (id >= 0) {
+        this.setState({
+          activeItem: this.activeItem = id
+        });
+      } else {
+        this.setState({
+          activeItem: this.activeItem === -1
+        });
+      }
     }
 
     render() {
-      const {activeId} = this.state;
+      const {activeItem} = this.state;
 
       return (
         <Component
           {...this.props}
-          activeId={activeId}
-          handleOverOnItem={this.handleOverOnItem}
-          handleOutItem={this.handleOutItem}
-          handleOnClick={this.handleOnClick}
+          activeItem={activeItem}
+          handleActiveItem={this.handleActiveItem}
         />
       );
     }

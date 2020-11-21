@@ -2,11 +2,13 @@ import React from "react";
 import AddReviewFormProps from "./add-review-form-props";
 
 const AddReviewForm = (props) => {
-  const {handleSubmit, handleFieldChange} = props;
+  const {handleFieldChange} = props;
   return (
     <div className="add-review">
       <form action="#" className="add-review__form"
-        onSubmit={handleSubmit}
+        onSubmit={(evt) => {
+          evt.preventDefault();
+        }}
       >
         <div className="rating">
           <div className="rating__stars">
