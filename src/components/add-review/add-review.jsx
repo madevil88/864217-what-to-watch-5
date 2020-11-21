@@ -3,6 +3,9 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import MainProps from "../main/main-props";
 import AddReviewForm from "../add-review-form/add-review-form";
+import withInputValue from "../../hocs/with-input-value/with-input-value";
+
+const AddReviewFormWrapped = withInputValue(AddReviewForm);
 
 const AddReview = (props) => {
   const {films} = props;
@@ -49,7 +52,7 @@ const AddReview = (props) => {
           <img src={films[0].poster} alt={films[0].title} width="218" height="327" />
         </div>
       </div>
-      <AddReviewForm />
+      <AddReviewFormWrapped />
     </section>
   );
 };

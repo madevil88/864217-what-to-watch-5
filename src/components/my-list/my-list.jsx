@@ -4,6 +4,9 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+
+const ListOfFilmsWrapped = withActiveItem(ListOfFilms);
 
 const MyList = (props) => {
   const {films, currentGenre, getFilteredFilmsCount} = props;
@@ -34,7 +37,7 @@ const MyList = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__movies-list">
-          <ListOfFilms
+          <ListOfFilmsWrapped
             films={films}
             currentGenre={currentGenre}
             getFilteredFilmsCount={getFilteredFilmsCount}
