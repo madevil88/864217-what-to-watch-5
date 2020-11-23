@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {getFilteredFilms} from "../../store/selectors";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
@@ -9,7 +9,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item";
 const ListOfFilmsWrapped = withActiveItem(ListOfFilms);
 
 const MyList = (props) => {
-  const {films, currentGenre, getFilteredFilmsCount} = props;
+  const {films} = props;
 
   return (
     <div className="user-page">
@@ -38,9 +38,7 @@ const MyList = (props) => {
 
         <div className="catalog__movies-list">
           <ListOfFilmsWrapped
-            films={films}
-            currentGenre={currentGenre}
-            getFilteredFilmsCount={getFilteredFilmsCount}
+            filteredFilms={films.filteredFilms}
           />
         </div>
       </section>
@@ -65,15 +63,10 @@ const MyList = (props) => {
 MyList.propTypes = MainProps.propTypes;
 
 const mapStateToProps = (state) => ({
-  films: state.films,
-  currentGenre: state.currentGenre
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getFilteredFilmsCount(filteredFilmsCount) {
-    dispatch(ActionCreator.getFilteredFilmsCount(filteredFilmsCount));
+  films: {
+    filteredFilms: getFilteredFilms(state)
   },
 });
 
 export {MyList};
-export default connect(mapStateToProps, mapDispatchToProps)(MyList);
+export default connect(mapStateToProps)(MyList);

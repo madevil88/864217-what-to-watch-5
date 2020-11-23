@@ -41,7 +41,7 @@ const withVideo = (Component) => {
           {...this.props}
         >
           <video
-            src={film.src}
+            src={film.video_link}
             width={FilmSize.WIDTH}
             height={FilmSize.HEIGHT}
             autoPlay={!isLoading && isPlaying}

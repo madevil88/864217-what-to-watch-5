@@ -45,12 +45,12 @@ const FilmOverview = (props) => {
         <div className="movie-rating__score">{film.rating}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{getFilmStatus(film.rating)}</span>
-          <span className="movie-rating__count">{film.reviewsCount} ratings</span>
+          <span className="movie-rating__count">{film.scores_count} ratings</span>
         </p>
       </div>
 
       <div className="movie-card__text">
-        <p>{film.plot}</p>
+        <p>{film.description}</p>
         <p className="movie-card__director"><strong>Director: {film.director}</strong></p>
 
         <p className="movie-card__starring"><strong>Starring: {film.starring.map((star) => (
