@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {AppRoute} from "../../const";
 import {getFilteredFilms,
   getCurrentGenre,
   getReviews} from "../../store/selectors";
@@ -8,6 +9,7 @@ import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import Tabs from "../tabs/tabs";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import UserBlock from "../user-block/user-block";
 
 const ListOfFilmsWrapped = withActiveItem(ListOfFilms);
 const TabsWrapped = withActiveItem(Tabs);
@@ -16,8 +18,9 @@ const FILMS_COUNT = 4;
 
 const Film = (props) => {
   const {films,
-    reviews} = props;
-  const currentFilm = films.filteredFilms[0];
+    reviews,
+    id} = props;
+  const currentFilm = films.filteredFilms[id];
 
   return (
     <React.Fragment>
@@ -31,20 +34,14 @@ const Film = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <Link to="/" className="logo__link">
+              <Link to={AppRoute.ROOT} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
               </Link>
             </div>
 
-            <div className="user-block">
-              <Link to="/login">
-                <div className="user-block__avatar">
-                  <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </Link>
-            </div>
+            <UserBlock />
           </header>
 
           <div className="movie-card__wrap">
@@ -56,19 +53,19 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <Link to="/player/0" className="btn btn--play movie-card__button">
+                <Link to={`/player/${id}`} className="btn btn--play movie-card__button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </Link>
-                <Link to="/mylist" className="btn btn--list movie-card__button">
+                <Link to={AppRoute.MY_LIST} className="btn btn--list movie-card__button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                 </Link>
-                <Link to="/films/1/review" className="btn movie-card__button">Add review</Link>
+                <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -103,7 +100,7 @@ const Film = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
+            <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>

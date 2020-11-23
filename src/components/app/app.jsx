@@ -1,7 +1,9 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import {AppRoute} from "../../const";
 import {getFilteredFilms} from "../../store/selectors";
+import browserHistory from "../../browser-history";
 import AppProps from "./app-props";
 import Main from "../main/main";
 import SignIn from "../sign-in/sign-in";
@@ -9,33 +11,48 @@ import MyList from "../my-list/my-list";
 import Film from "../film/film";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
+import PrivateRoute from "../private-route/private-route";
 
 const App = (props) => {
   const {films} = props;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.ROOT}>
           <Main />
         </Route>
-        <Route exact path="/login">
+        <Route exact path={AppRoute.LOGIN}>
           <SignIn />
         </Route>
-        <Route exact path="/mylist">
-          <MyList />
-        </Route>
-        <Route exact path="/films/:id"
-          render={() => (
-            <Film />
+        <PrivateRoute
+          exact
+          path={AppRoute.MY_LIST}
+          render={() => {
+            return (
+              <MyList />
+            );
+          }}
+        />
+        <Route exact path={AppRoute.FILM}
+          render={(serviceProps) => (
+            <Film
+              id={serviceProps.match.params.id}
+            />
           )}
         />
-        <Route exact path="/films/:id/review"
-          render={() => (
-            <AddReview />
-          )}
+        <PrivateRoute
+          exact
+          path={AppRoute.ADD_REVIEW}
+          render={(serviceProps) => {
+            return (
+              <AddReview
+                id={serviceProps.match.params.id}
+              />
+            );
+          }}
         />
-        <Route exact path="/player/:id"
+        <Route exact path={AppRoute.PLAYER}
           render={(serviceProps) => (
             <Player
               filteredFilms={films.filteredFilms}

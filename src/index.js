@@ -10,6 +10,7 @@ import {createAPI} from "./services/api";
 import {requireAuthorization} from "./store/action";
 import {fetchFilmList, checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
+import {redirect} from "./store/middlewares/redirect";
 
 const api = createAPI(
     () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -18,7 +19,8 @@ const api = createAPI(
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 
@@ -26,6 +28,7 @@ store.dispatch(checkAuth());
 
 Promise.all([
   store.dispatch(fetchFilmList()),
+  // store.dispatch(checkAuth())
 ])
 .then(() => {
   ReactDOM.render(
