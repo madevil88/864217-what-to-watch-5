@@ -1,7 +1,9 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {getFilteredFilms,
+  getCurrentGenre,
+  getReviews} from "../../store/selectors";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import Tabs from "../tabs/tabs";
@@ -14,9 +16,8 @@ const FILMS_COUNT = 4;
 
 const Film = (props) => {
   const {films,
-    currentGenre,
-    reviews,
-    getFilteredFilmsCount} = props;
+    reviews} = props;
+  const currentFilm = films.filteredFilms[0];
 
   return (
     <React.Fragment>
@@ -48,10 +49,10 @@ const Film = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{films[0].title}</h2>
+              <h2 className="movie-card__title">{currentFilm.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{films[0].genre}</span>
-                <span className="movie-card__year">{films[0].released}</span>
+                <span className="movie-card__genre">{currentFilm.genre}</span>
+                <span className="movie-card__year">{currentFilm.released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -76,11 +77,11 @@ const Film = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={films[0].poster} alt={films[0].title} width="218" height="327" />
+              <img src={currentFilm.poster_image} alt={currentFilm.name} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
               <TabsWrapped
-                film={films[0]}
+                film={currentFilm}
                 reviews={reviews}
               />
             </div>
@@ -94,10 +95,8 @@ const Film = (props) => {
 
           <div className="catalog__movies-list">
             <ListOfFilmsWrapped
-              films = {films}
+              filteredFilms = {films.filteredFilms}
               filmsCount = {FILMS_COUNT}
-              currentGenre = {currentGenre}
-              getFilteredFilmsCount={getFilteredFilmsCount}
             />
           </div>
         </section>
@@ -123,16 +122,12 @@ const Film = (props) => {
 Film.propTypes = MainProps.propTypes;
 
 const mapStateToProps = (state) => ({
-  films: state.films,
-  currentGenre: state.currentGenre,
-  reviews: state.reviews
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getFilteredFilmsCount(filteredFilmsCount) {
-    dispatch(ActionCreator.getFilteredFilmsCount(filteredFilmsCount));
+  films: {
+    filteredFilms: getFilteredFilms(state)
   },
+  currentGenre: getCurrentGenre(state),
+  reviews: getReviews(state)
 });
 
 export {Film};
-export default connect(mapStateToProps, mapDispatchToProps)(Film);
+export default connect(mapStateToProps)(Film);

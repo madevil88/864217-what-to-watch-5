@@ -8,11 +8,11 @@ const VideoPlayer = (props) => {
   return (
     <React.Fragment>
       <div className="small-movie-card__image">
-        {!(id === activeItem) && <img src={film.poster} alt={film.title} width="280" height="175" />}
+        {!(id === activeItem) && <img src={film.poster_image} alt={film.name} width="280" height="175" />}
         {children}
       </div>
       <h3 className="small-movie-card__title">
-        <Link to="/films/1" className="small-movie-card__link">{film.title}</Link>
+        <Link to="/films/1" className="small-movie-card__link">{film.name}</Link>
       </h3>
     </React.Fragment>
   );

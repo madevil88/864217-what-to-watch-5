@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {getFilms} from "../../store/selectors";
 import MainProps from "../main/main-props";
 import AddReviewForm from "../add-review-form/add-review-form";
 import withInputValue from "../../hocs/with-input-value/with-input-value";
@@ -31,7 +32,7 @@ const AddReview = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to="/films/1" className="breadcrumbs__link">{films[0].title}</Link>
+                <Link to="/films/1" className="breadcrumbs__link">{films[0].name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -49,7 +50,7 @@ const AddReview = (props) => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={films[0].poster} alt={films[0].title} width="218" height="327" />
+          <img src={films[0].poster_image} alt={films[0].name} width="218" height="327" />
         </div>
       </div>
       <AddReviewFormWrapped />
@@ -60,7 +61,7 @@ const AddReview = (props) => {
 AddReview.propTypes = MainProps.propTypes;
 
 const mapStateToProps = (state) => ({
-  films: state.films,
+  films: getFilms(state),
 });
 
 export {AddReview};

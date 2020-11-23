@@ -3,16 +3,16 @@ import {Link} from "react-router-dom";
 import PlayerProps from "./player-props";
 
 const Player = (props) => {
-  const {films, id} = props;
+  const {filteredFilms, id} = props;
 
   return (
     <div className="player">
       <video className="player__video"
-        src={films[id].src}
-        poster={films[id].poster}
+        src={filteredFilms[id].video_link}
+        poster={filteredFilms[id].poster_image}
         controls={true}
       ></video>
-      <Link to="/films/0" className="player__exit">Exit</Link>
+      <Link to={`/films/${id}`} className="player__exit">Exit</Link>
     </div>
   );
 };

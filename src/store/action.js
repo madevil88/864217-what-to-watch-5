@@ -1,22 +1,41 @@
 import {InitialState} from "../const";
 
-export const ActionType = {
+const ActionType = {
   SELECT_GENRE: `SELECT_GENRE`,
   INCREMENT_FILMS_COUNT: `INCREMENT_FILMS_COUNT`,
-  FILTERED_FILMS_COUNT: `FILTERED_FILMS_COUNT`,
+  LOAD_FILMS: `LOAD_FILMS`,
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
-export const ActionCreator = {
-  getSelectedGenre: (selectGenre) => ({
-    type: ActionType.SELECT_GENRE,
-    payload: selectGenre,
-  }),
-  incrementFilmsCount: () => ({
-    type: ActionType.INCREMENT_FILMS_COUNT,
-    payload: InitialState.FILMS_COUNT,
-  }),
-  getFilteredFilmsCount: (filteredFilmsCount) => ({
-    type: ActionType.FILTERED_FILMS_COUNT,
-    payload: filteredFilmsCount,
-  }),
-};
+const getSelectedGenre = (selectGenre) => ({
+  type: ActionType.SELECT_GENRE,
+  payload: selectGenre,
+});
+
+const incrementFilmsCount = () => ({
+  type: ActionType.INCREMENT_FILMS_COUNT,
+  payload: InitialState.FILMS_COUNT,
+});
+
+const loadFilms = (films) => ({
+  type: ActionType.LOAD_FILMS,
+  payload: films,
+});
+
+const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status,
+});
+
+const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
+});
+
+export {ActionType,
+  getSelectedGenre,
+  incrementFilmsCount,
+  loadFilms,
+  requireAuthorization,
+  redirectToRoute};

@@ -1,7 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {getSelectedGenre,
+  incrementFilmsCount} from "../../store/action";
+import {getFilteredFilms,
+  getFilms,
+  getCurrentGenre,
+  getFilmsCount} from "../../store/selectors";
 import MainProps from "./main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import ListOfGenres from "../list-of-genres/list-of-genres";
@@ -12,12 +17,10 @@ const ListOfGenresWrapped = withActiveItem(ListOfGenres);
 
 const Main = (props) => {
   const {films,
-    currentGenre,
-    getSelectedGenre,
+    getSelectedGenreAction,
     filmsCount,
-    getShowMoreStatus,
-    isShowMoreButton,
-    getFilteredFilmsCount} = props;
+    getShowMoreStatusAction} = props;
+  const currentFilm = films.filteredFilms[0];
 
   return (
     <React.Fragment>
@@ -45,13 +48,13 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={films[0].poster} alt={films[0].title} width="218" height="327" />
+              <img src={currentFilm.poster_image} alt={currentFilm.name} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{films[0].title}</h2>
+              <h2 className="movie-card__title">{currentFilm.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{films[0].genre}</span>
-                <span className="movie-card__year">{films[0].released}</span>
+                <span className="movie-card__genre">{currentFilm.genre}</span>
+                <span className="movie-card__year">{currentFilm.released}</span>
               </p>
               <div className="movie-card__buttons">
                 <Link to="/player/0" className="btn btn--play movie-card__button">
@@ -76,20 +79,18 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ul className="catalog__genres-list">
             <ListOfGenresWrapped
-              films={films}
-              getSelectedGenre={getSelectedGenre}
+              allFilms={films.allFilms}
+              getSelectedGenre={getSelectedGenreAction}
             />
           </ul>
           <div className="catalog__movies-list">
             <ListOfFilms
-              films={films}
-              currentGenre={currentGenre}
+              filteredFilms={films.filteredFilms}
               filmsCount={filmsCount}
-              getFilteredFilmsCount={getFilteredFilmsCount}
             />
           </div>
-          {isShowMoreButton && <ShowMoreButton
-            getShowMoreStatus={getShowMoreStatus}
+          {(filmsCount < films.filteredFilms.length) && <ShowMoreButton
+            getShowMoreStatus={getShowMoreStatusAction}
           />}
         </section>
         <footer className="page-footer">
@@ -112,21 +113,20 @@ const Main = (props) => {
 Main.propTypes = MainProps.propTypes;
 
 const mapStateToProps = (state) => ({
-  films: state.films,
-  currentGenre: state.currentGenre,
-  filmsCount: state.filmsCount,
-  isShowMoreButton: state.isShowMoreButton,
+  films: {
+    allFilms: getFilms(state),
+    filteredFilms: getFilteredFilms(state)
+  },
+  currentGenre: getCurrentGenre(state),
+  filmsCount: getFilmsCount(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getSelectedGenre(selectGenre) {
-    dispatch(ActionCreator.getSelectedGenre(selectGenre));
+  getSelectedGenreAction(selectGenre) {
+    dispatch(getSelectedGenre(selectGenre));
   },
-  getShowMoreStatus() {
-    dispatch(ActionCreator.incrementFilmsCount());
-  },
-  getFilteredFilmsCount(filteredFilmsCount) {
-    dispatch(ActionCreator.getFilteredFilmsCount(filteredFilmsCount));
+  getShowMoreStatusAction() {
+    dispatch(incrementFilmsCount());
   },
 });
 

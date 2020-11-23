@@ -26,4 +26,46 @@ const TabsMap = {
   2: `Reviews`
 };
 
-export {InitialState, Genre, FilmStatus, TabsMap};
+const BACKEND_URL = `https://5.react.pages.academy/wtw`;
+const REQUEST_TIMEOUT = 5000;
+
+const HttpCode = {
+  UNAUTHORIZED: 401
+};
+
+const NameSpace = {
+  DATA: `DATA`,
+  APP_STATE: `APP_STATE`,
+  USER: `USER`,
+};
+
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+const AppRoute = {
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  FILM: `/films/:id`,
+  ROOT: `/`,
+  ADD_REVIEW: `/films/:id/review`,
+  PLAYER: `/player/:id`,
+};
+
+const APIRoute = {
+  FILMS: `/films`,
+  LOGIN: `/login`,
+};
+
+export {InitialState,
+  Genre,
+  FilmStatus,
+  TabsMap,
+  BACKEND_URL,
+  REQUEST_TIMEOUT,
+  HttpCode,
+  NameSpace,
+  AuthorizationStatus,
+  AppRoute,
+  APIRoute};
