@@ -6,6 +6,7 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+  LOAD_FILM_ID: `LOAD_FILM_ID`,
 };
 
 const getSelectedGenre = (selectGenre) => ({
@@ -23,6 +24,11 @@ const loadFilms = (films) => ({
   payload: films,
 });
 
+const loadFilmId = (film) => ({
+  type: ActionType.LOAD_FILM_ID,
+  payload: film,
+});
+
 const requireAuthorization = (status) => ({
   type: ActionType.REQUIRED_AUTHORIZATION,
   payload: status,
@@ -37,5 +43,6 @@ export {ActionType,
   getSelectedGenre,
   incrementFilmsCount,
   loadFilms,
+  loadFilmId,
   requireAuthorization,
   redirectToRoute};

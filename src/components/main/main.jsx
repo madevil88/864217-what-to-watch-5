@@ -12,16 +12,14 @@ import MainProps from "./main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import ListOfGenres from "../list-of-genres/list-of-genres";
 import ShowMoreButton from "../show-more-button/show-more-button";
-import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import UserBlock from "../user-block/user-block";
-
-const ListOfGenresWrapped = withActiveItem(ListOfGenres);
 
 const Main = (props) => {
   const {films,
     getSelectedGenreAction,
     filmsCount,
-    getShowMoreStatusAction} = props;
+    getShowMoreStatusAction,
+    currentGenre} = props;
   const currentFilm = films.filteredFilms[0];
 
   return (
@@ -54,7 +52,7 @@ const Main = (props) => {
                 <span className="movie-card__year">{currentFilm.released}</span>
               </p>
               <div className="movie-card__buttons">
-                <Link to="/player/0" className="btn btn--play movie-card__button">
+                <Link to={`/player/${currentFilm.id}`} className="btn btn--play movie-card__button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -75,9 +73,10 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ul className="catalog__genres-list">
-            <ListOfGenresWrapped
+            <ListOfGenres
               allFilms={films.allFilms}
               getSelectedGenre={getSelectedGenreAction}
+              currentGenre={currentGenre}
             />
           </ul>
           <div className="catalog__movies-list">

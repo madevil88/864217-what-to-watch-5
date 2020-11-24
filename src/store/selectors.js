@@ -18,6 +18,10 @@ const getFilteredFilms = createSelector(getFilms, getCurrentGenre, (films, curre
   });
 });
 
+const getFilmId = (state) => {
+  return state.DATA.filmId;
+};
+
 const getFilmsCount = (state) => {
   return state.APP_STATE.filmsCount;
 };
@@ -32,6 +36,7 @@ const getAuthorizationStatus = (state) => {
 
 export {getFilms,
   getFilteredFilms,
+  getFilmId,
   getCurrentGenre,
   getFilmsCount,
   getReviews,
