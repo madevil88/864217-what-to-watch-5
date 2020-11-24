@@ -12,7 +12,7 @@ const VideoPlayer = (props) => {
         {children}
       </div>
       <h3 className="small-movie-card__title">
-        <Link to="/films/1" className="small-movie-card__link">{film.name}</Link>
+        <Link to={`/films/${id}`} className="small-movie-card__link">{film.name}</Link>
       </h3>
     </React.Fragment>
   );

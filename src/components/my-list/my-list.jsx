@@ -1,10 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {AppRoute} from "../../const";
 import {getFilteredFilms} from "../../store/selectors";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import UserBlock from "../user-block/user-block";
 
 const ListOfFilmsWrapped = withActiveItem(ListOfFilms);
 
@@ -15,7 +17,7 @@ const MyList = (props) => {
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
-          <Link to="/" className="logo__link">
+          <Link to={AppRoute.ROOT} className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
@@ -24,13 +26,7 @@ const MyList = (props) => {
 
         <h1 className="page-title user-page__title">My list</h1>
 
-        <div className="user-block">
-          <Link to="/login">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </Link>
-        </div>
+        <UserBlock />
       </header>
 
       <section className="catalog">
@@ -45,7 +41,7 @@ const MyList = (props) => {
 
       <footer className="page-footer">
         <div className="logo">
-          <Link to="/" className="logo__link logo__link--light">
+          <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>

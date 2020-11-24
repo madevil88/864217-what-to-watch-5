@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {AppRoute} from "../../const";
 import {getSelectedGenre,
   incrementFilmsCount} from "../../store/action";
 import {getFilteredFilms,
@@ -12,6 +13,7 @@ import ListOfFilms from "../list-of-films/list-of-films";
 import ListOfGenres from "../list-of-genres/list-of-genres";
 import ShowMoreButton from "../show-more-button/show-more-button";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import UserBlock from "../user-block/user-block";
 
 const ListOfGenresWrapped = withActiveItem(ListOfGenres);
 
@@ -37,13 +39,8 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-          <div className="user-block">
-            <Link to="/login">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </Link>
-          </div>
+
+          <UserBlock />
         </header>
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -63,7 +60,7 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <Link to="/mylist" className="btn btn--list movie-card__button">
+                <Link to={AppRoute.MY_LIST} className="btn btn--list movie-card__button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
