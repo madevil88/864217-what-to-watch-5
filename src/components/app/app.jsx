@@ -2,7 +2,7 @@ import React from "react";
 import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {AppRoute} from "../../const";
-import {getFilteredFilms} from "../../store/selectors";
+import {getFilms} from "../../store/selectors";
 import browserHistory from "../../browser-history";
 import AppProps from "./app-props";
 import Main from "../main/main";
@@ -55,7 +55,7 @@ const App = (props) => {
         <Route exact path={AppRoute.PLAYER}
           render={(serviceProps) => (
             <Player
-              filteredFilms={films.filteredFilms}
+              allFilms={films.allFilms}
               id={serviceProps.match.params.id}
             />
           )}
@@ -69,7 +69,7 @@ App.propTypes = AppProps.propTypes;
 
 const mapStateToProps = (state) => ({
   films: {
-    filteredFilms: getFilteredFilms(state)
+    allFilms: getFilms(state),
   },
 });
 

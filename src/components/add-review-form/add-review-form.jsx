@@ -1,13 +1,20 @@
 import React from "react";
 import AddReviewFormProps from "./add-review-form-props";
+import {connect} from "react-redux";
+import {commentFilm} from "../../store/api-actions";
 
 const AddReviewForm = (props) => {
-  const {handleFieldChange} = props;
+  const {handleFieldChange, ratingInput, reviewText, onSubmit, id} = props;
+
   return (
     <div className="add-review">
       <form action="#" className="add-review__form"
         onSubmit={(evt) => {
           evt.preventDefault();
+          onSubmit(id, {
+            rating: ratingInput,
+            comment: reviewText,
+          });
         }}
       >
         <div className="rating">
@@ -60,4 +67,11 @@ const AddReviewForm = (props) => {
 
 AddReviewForm.propTypes = AddReviewFormProps.propTypes;
 
-export default AddReviewForm;
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(id, commentData) {
+    dispatch(commentFilm(id, commentData));
+  }
+});
+
+export {AddReviewForm};
+export default connect(null, mapDispatchToProps)(AddReviewForm);

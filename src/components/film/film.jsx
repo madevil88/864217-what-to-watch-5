@@ -1,10 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {AppRoute} from "../../const";
+import {AppRoute, AuthorizationStatus} from "../../const";
 import {getFilteredFilms,
-  getCurrentGenre,
-  getReviews} from "../../store/selectors";
+  getReviews,
+  getFilmId,
+  getAuthorizationStatus} from "../../store/selectors";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import Tabs from "../tabs/tabs";
@@ -19,8 +20,8 @@ const FILMS_COUNT = 4;
 const Film = (props) => {
   const {films,
     reviews,
-    id} = props;
-  const currentFilm = films.filteredFilms[id];
+    filmId,
+    authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -46,14 +47,14 @@ const Film = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{currentFilm.name}</h2>
+              <h2 className="movie-card__title">{filmId.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{currentFilm.genre}</span>
-                <span className="movie-card__year">{currentFilm.released}</span>
+                <span className="movie-card__genre">{filmId.genre}</span>
+                <span className="movie-card__year">{filmId.released}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <Link to={`/player/${id}`} className="btn btn--play movie-card__button">
+                <Link to={`/player/${filmId.id}`} className="btn btn--play movie-card__button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -65,7 +66,8 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </Link>
-                <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                {(authorizationStatus === AuthorizationStatus.AUTH) &&
+                  <Link to={`/films/${filmId.id}/review`} className="btn movie-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -74,11 +76,11 @@ const Film = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={currentFilm.poster_image} alt={currentFilm.name} width="218" height="327" />
+              <img src={filmId.poster_image} alt={filmId.name} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
               <TabsWrapped
-                film={currentFilm}
+                film={filmId}
                 reviews={reviews}
               />
             </div>
@@ -122,8 +124,9 @@ const mapStateToProps = (state) => ({
   films: {
     filteredFilms: getFilteredFilms(state)
   },
-  currentGenre: getCurrentGenre(state),
-  reviews: getReviews(state)
+  filmId: getFilmId(state),
+  reviews: getReviews(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export {Film};

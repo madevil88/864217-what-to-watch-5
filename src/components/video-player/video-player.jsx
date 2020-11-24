@@ -1,9 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {fetchFilmId} from "../../store/api-actions";
 import VideoPlayerProps from "./video-player-props";
 
 const VideoPlayer = (props) => {
-  const {film, id, activeItem, children} = props;
+  const {film, id, activeItem, children, loadedFilmIdAction} = props;
 
   return (
     <React.Fragment>
@@ -12,7 +14,13 @@ const VideoPlayer = (props) => {
         {children}
       </div>
       <h3 className="small-movie-card__title">
-        <Link to={`/films/${id}`} className="small-movie-card__link">{film.name}</Link>
+        <Link
+          to={`/films/${film.id}`}
+          className="small-movie-card__link"
+          onClick={() => {
+            loadedFilmIdAction(film.id);
+          }}
+        >{film.name}</Link>
       </h3>
     </React.Fragment>
   );
@@ -20,4 +28,11 @@ const VideoPlayer = (props) => {
 
 VideoPlayer.propTypes = VideoPlayerProps.propTypes;
 
-export default VideoPlayer;
+const mapDispatchToProps = (dispatch) => ({
+  loadedFilmIdAction(id) {
+    dispatch(fetchFilmId(id));
+  },
+});
+
+export {VideoPlayer};
+export default connect(null, mapDispatchToProps)(VideoPlayer);

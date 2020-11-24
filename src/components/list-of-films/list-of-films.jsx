@@ -18,10 +18,10 @@ const ListOfFilms = (props) => {
         return null;
       } else {
         return (
-          <React.Fragment key={i}>
+          <React.Fragment key={film.id}>
             <MovieCardWrapped
               film={film}
-              id={i}
+              id={film.id}
               initialActiveItem={INITIAL_ACTIVE_ITEM}
             />
           </React.Fragment>
