@@ -13,12 +13,14 @@ const Genre = {
 };
 
 const FilmStatus = {
+  AWESOME: `Awesome`,
   VERY_GOOD: `Very good`,
   GOOD: `Good`,
-  NOT_BAD: `Not bad`,
+  NORMAL: `Normal`,
   BAD: `Bad`,
-  VERY_BAD: `Very bad`,
 };
+
+const SHOW_GENRES_COUNT = 10;
 
 const TabsMap = {
   0: `Overview`,
@@ -56,16 +58,36 @@ const AppRoute = {
 const APIRoute = {
   FILMS: `/films`,
   LOGIN: `/login`,
+  PROMO_FILM: `/films/promo`,
+  FAVORITE_FILMS: `/favorite`,
+};
+
+const ReviewTextLength = {
+  MIN: 50,
+  MAX: 400
+};
+
+const ErrorMessageMap = {
+  400: `You made a mistake, correct and send again`,
+  401: `You are not logged in, please log in`
+};
+
+const RexExp = {
+  EMAIL: /^[a-zA-Z0-9.!#$%&'*+/=?^_\`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 };
 
 export {InitialState,
   Genre,
   FilmStatus,
   TabsMap,
+  SHOW_GENRES_COUNT,
   BACKEND_URL,
   REQUEST_TIMEOUT,
   HttpCode,
   NameSpace,
   AuthorizationStatus,
   AppRoute,
-  APIRoute};
+  APIRoute,
+  ReviewTextLength,
+  ErrorMessageMap,
+  RexExp};

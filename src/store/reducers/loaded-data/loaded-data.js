@@ -1,11 +1,14 @@
 import {extend} from "../../../utils";
 import {ActionType} from "../../action";
-import reviews from "../../../mocks/reviews";
 
 const initialState = {
   films: [],
   filmId: ``,
-  reviews,
+  reviews: [],
+  promoFilm: ``,
+  favoriteFilms: [],
+  reviewStatus: ``,
+  loginStatus: ``,
 };
 
 const loadedData = (state = initialState, action) => {
@@ -17,6 +20,26 @@ const loadedData = (state = initialState, action) => {
     case ActionType.LOAD_FILM_ID:
       return extend(state, {
         filmId: action.payload,
+      });
+    case ActionType.COMMENT_RESPONSE_STATUS:
+      return extend(state, {
+        reviewStatus: action.payload,
+      });
+    case ActionType.LOGIN_RESPONSE_STATUS:
+      return extend(state, {
+        loginStatus: action.payload,
+      });
+    case ActionType.LOAD_REVIEWS:
+      return extend(state, {
+        reviews: action.payload,
+      });
+    case ActionType.LOAD_PROMO_FILM:
+      return extend(state, {
+        promoFilm: action.payload,
+      });
+    case ActionType.LOAD_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: action.payload,
       });
   }
 

@@ -12,7 +12,7 @@ const FilmReviews = (props) => {
           {reviews.map((review, i, comments) => {
             if (i < Math.round(comments.length / 2)) {
               return (
-                <React.Fragment key={`${review.rating}-${i}`}>
+                <React.Fragment key={`${review.rating}-${review.id}`}>
                   <CreateReview
                     review={review}
                   />
@@ -27,7 +27,7 @@ const FilmReviews = (props) => {
           {reviews.map((review, i, comments) => {
             if (i >= Math.round(comments.length / 2) && i < comments.length) {
               return (
-                <React.Fragment key={`${review.rating}-${i}`}>
+                <React.Fragment key={`${review.rating}-${review.id}`}>
                   <CreateReview
                     review={review}
                   />

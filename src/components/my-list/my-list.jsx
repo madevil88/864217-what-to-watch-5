@@ -1,17 +1,22 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {AppRoute} from "../../const";
-import {getFilteredFilms} from "../../store/selectors";
+import {getFavoriteFilms} from "../../store/selectors";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import UserBlock from "../user-block/user-block";
+import {fetchFavoriteFilms} from "../../store/api-actions";
 
 const ListOfFilmsWrapped = withActiveItem(ListOfFilms);
 
 const MyList = (props) => {
-  const {films} = props;
+  const {favoriteFilms, fetchFavoriteFilmsAction} = props;
+
+  useEffect(()=> {
+    fetchFavoriteFilmsAction();
+  }, []);
 
   return (
     <div className="user-page">
@@ -34,7 +39,7 @@ const MyList = (props) => {
 
         <div className="catalog__movies-list">
           <ListOfFilmsWrapped
-            filteredFilms={films.filteredFilms}
+            filteredFilms={favoriteFilms}
           />
         </div>
       </section>
@@ -59,10 +64,14 @@ const MyList = (props) => {
 MyList.propTypes = MainProps.propTypes;
 
 const mapStateToProps = (state) => ({
-  films: {
-    filteredFilms: getFilteredFilms(state)
+  favoriteFilms: getFavoriteFilms(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchFavoriteFilmsAction() {
+    dispatch(fetchFavoriteFilms());
   },
 });
 
 export {MyList};
-export default connect(mapStateToProps)(MyList);
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);

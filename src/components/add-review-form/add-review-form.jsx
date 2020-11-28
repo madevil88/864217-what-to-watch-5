@@ -2,9 +2,34 @@ import React from "react";
 import AddReviewFormProps from "./add-review-form-props";
 import {connect} from "react-redux";
 import {commentFilm} from "../../store/api-actions";
+import {ReviewTextLength, ErrorMessageMap} from "../../const";
+import {getReviewStatus} from "../../store/selectors";
+
+const validate = ({reviewText, ratingInput})=>{
+  let isValid = true;
+  const messages = [];
+
+  if (reviewText.length < ReviewTextLength.MIN) {
+    isValid = false;
+    messages.push(`Minimun message length ${ReviewTextLength.MIN} symbols. Current lenght ${reviewText.length}.`);
+  }
+
+  if (reviewText.length > ReviewTextLength.MAX) {
+    isValid = false;
+    messages.push(`Maximum message length ${ReviewTextLength.MAX} symbols. Need to delete ${reviewText.length - ReviewTextLength.MAX}.`);
+  }
+
+  if (!ratingInput) {
+    isValid = false;
+    messages.push(`Please, select the rating score.`);
+  }
+
+  return {isValid, messages};
+};
 
 const AddReviewForm = (props) => {
-  const {handleFieldChange, ratingInput, reviewText, onSubmit, id} = props;
+  const {handleFieldChange, ratingInput, reviewText, onSubmit, id, reviewStatus} = props;
+  const {isValid, messages} = validate({reviewText, ratingInput});
 
   return (
     <div className="add-review">
@@ -56,16 +81,25 @@ const AddReviewForm = (props) => {
           >
           </textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
+            <button
+              className="add-review__btn"
+              type="submit"
+              disabled={!isValid}
+            >Post</button>
           </div>
-
         </div>
+        {reviewStatus && <div>{ErrorMessageMap[reviewStatus]}</div>}
+        {!isValid && messages.map((message, i)=><div key={i}>{message}</div>)}
       </form>
     </div>
   );
 };
 
 AddReviewForm.propTypes = AddReviewFormProps.propTypes;
+
+const mapStateToProps = (state) => ({
+  reviewStatus: getReviewStatus(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(id, commentData) {
@@ -74,4 +108,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {AddReviewForm};
-export default connect(null, mapDispatchToProps)(AddReviewForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewForm);

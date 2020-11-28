@@ -8,7 +8,11 @@ import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/root-reducer";
 import {createAPI} from "./services/api";
 import {requireAuthorization} from "./store/action";
-import {fetchFilmList, checkAuth, fetchFilmId} from "./store/api-actions";
+import {fetchFilmList,
+  checkAuth,
+  fetchFilmId,
+  fetchPromoFilm,
+  fetchReviews} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 import {redirect} from "./store/middlewares/redirect";
 
@@ -28,7 +32,9 @@ store.dispatch(checkAuth());
 
 Promise.all([
   store.dispatch(fetchFilmList()),
-  store.dispatch(fetchFilmId(1))
+  store.dispatch(fetchFilmId(1)),
+  store.dispatch(fetchPromoFilm()),
+  store.dispatch(fetchReviews(1)),
 ])
 .then(() => {
   ReactDOM.render(

@@ -5,24 +5,24 @@ import MainProps from "../main/main-props";
 const FilmStatusMap = [
   {
     min: 0,
-    max: 5,
-    status: FilmStatus.VERY_BAD
-  }, {
-    min: 5,
-    max: 6,
+    max: 3,
     status: FilmStatus.BAD
   }, {
-    min: 6,
-    max: 7,
-    status: FilmStatus.NOT_BAD
+    min: 3,
+    max: 5,
+    status: FilmStatus.NORMAL
   }, {
-    min: 7,
+    min: 5,
     max: 8,
     status: FilmStatus.GOOD
   }, {
     min: 8,
-    max: Infinity,
+    max: 10,
     status: FilmStatus.VERY_GOOD
+  }, {
+    min: 10,
+    max: Infinity,
+    status: FilmStatus.AWESOME
   }
 ];
 

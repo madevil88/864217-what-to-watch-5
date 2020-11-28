@@ -1,8 +1,8 @@
 import React from "react";
-import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router as BrowserRouter, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {AppRoute} from "../../const";
-import {getFilms} from "../../store/selectors";
+import {AppRoute, AuthorizationStatus} from "../../const";
+import {getFilms, getAuthorizationStatus} from "../../store/selectors";
 import browserHistory from "../../browser-history";
 import AppProps from "./app-props";
 import Main from "../main/main";
@@ -12,9 +12,12 @@ import Film from "../film/film";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import PrivateRoute from "../private-route/private-route";
+import withInputLogin from "../../hocs/with-input-login/with-input-login";
+
+const SignInWrapped = withInputLogin(SignIn);
 
 const App = (props) => {
-  const {films} = props;
+  const {films, authorizationStatus} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -23,7 +26,10 @@ const App = (props) => {
           <Main />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
-          <SignIn />
+          {(authorizationStatus === AuthorizationStatus.AUTH) ?
+            <Redirect to={AppRoute.ROOT} /> :
+            <SignInWrapped />
+          }
         </Route>
         <PrivateRoute
           exact
@@ -71,6 +77,7 @@ const mapStateToProps = (state) => ({
   films: {
     allFilms: getFilms(state),
   },
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export {App};

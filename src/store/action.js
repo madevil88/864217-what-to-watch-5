@@ -7,6 +7,11 @@ const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_FILM_ID: `LOAD_FILM_ID`,
+  COMMENT_RESPONSE_STATUS: `COMMENT_RESPONSE_STATUS`,
+  LOGIN_RESPONSE_STATUS: `LOGIN_RESPONSE_STATUS`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
+  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`
 };
 
 const getSelectedGenre = (selectGenre) => ({
@@ -34,9 +39,34 @@ const requireAuthorization = (status) => ({
   payload: status,
 });
 
+const commentResponseStatus = (status) => ({
+  type: ActionType.COMMENT_RESPONSE_STATUS,
+  payload: status,
+});
+
+const loginResponseStatus = (status) => ({
+  type: ActionType.LOGIN_RESPONSE_STATUS,
+  payload: status,
+});
+
 const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
+});
+
+const loadPromoFilm = (promoFilm) => ({
+  type: ActionType.LOAD_PROMO_FILM,
+  payload: promoFilm,
+});
+
+const loadFavoriteFilms = (favoriteFilms) => ({
+  type: ActionType.LOAD_FAVORITE_FILMS,
+  payload: favoriteFilms,
+});
+
+const loadReviews = (reviews) => ({
+  type: ActionType.LOAD_REVIEWS,
+  payload: reviews,
 });
 
 export {ActionType,
@@ -45,4 +75,9 @@ export {ActionType,
   loadFilms,
   loadFilmId,
   requireAuthorization,
-  redirectToRoute};
+  redirectToRoute,
+  commentResponseStatus,
+  loginResponseStatus,
+  loadPromoFilm,
+  loadFavoriteFilms,
+  loadReviews};

@@ -34,10 +34,30 @@ const getAuthorizationStatus = (state) => {
   return state.USER.authorizationStatus;
 };
 
+const getReviewStatus = (state) => {
+  return state.DATA.reviewStatus;
+};
+
+const getLoginStatus = (state) => {
+  return state.DATA.loginStatus;
+};
+
+const getPromoFilm = (state) => {
+  return state.DATA.promoFilm;
+};
+
+const getFavoriteFilms = (state) => {
+  return state.DATA.favoriteFilms;
+};
+
 export {getFilms,
   getFilteredFilms,
   getFilmId,
   getCurrentGenre,
   getFilmsCount,
   getReviews,
-  getAuthorizationStatus};
+  getAuthorizationStatus,
+  getReviewStatus,
+  getLoginStatus,
+  getPromoFilm,
+  getFavoriteFilms};

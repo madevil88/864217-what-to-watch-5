@@ -10,9 +10,10 @@ const Player = (props) => {
       <video className="player__video"
         src={allFilms[id - 1].video_link}
         poster={allFilms[id - 1].poster_image}
+        autoPlay={true}
         controls={true}
       ></video>
-      <Link to={`/films/${id - 1}`} className="player__exit">Exit</Link>
+      <Link to={`/films/${id}`} className="player__exit">Exit</Link>
     </div>
   );
 };

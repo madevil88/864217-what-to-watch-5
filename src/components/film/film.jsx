@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {AppRoute, AuthorizationStatus} from "../../const";
@@ -11,24 +11,35 @@ import ListOfFilms from "../list-of-films/list-of-films";
 import Tabs from "../tabs/tabs";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import UserBlock from "../user-block/user-block";
+import MyListButton from "../my-list-button/my-list-button";
+import {fetchFilmId, fetchReviews} from "../../store/api-actions";
 
 const ListOfFilmsWrapped = withActiveItem(ListOfFilms);
 const TabsWrapped = withActiveItem(Tabs);
+const MyListButtonWrapped = withActiveItem(MyListButton);
 
 const FILMS_COUNT = 4;
 
 const Film = (props) => {
   const {films,
+    id,
     reviews,
     filmId,
-    authorizationStatus} = props;
+    authorizationStatus,
+    loadedFilmIdAction,
+    loadedReviewsAction} = props;
+
+  useEffect(()=> {
+    loadedFilmIdAction(id);
+    loadedReviewsAction(id);
+  }, [id]);
 
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={filmId.background_image} alt={filmId.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -60,12 +71,11 @@ const Film = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <Link to={AppRoute.MY_LIST} className="btn btn--list movie-card__button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </Link>
+                <MyListButtonWrapped
+                  id={filmId.id}
+                  initialActiveItem={filmId.is_favorite}
+                  updateData={loadedFilmIdAction}
+                />
                 {(authorizationStatus === AuthorizationStatus.AUTH) &&
                   <Link to={`/films/${filmId.id}/review`} className="btn movie-card__button">Add review</Link>}
               </div>
@@ -129,5 +139,14 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  loadedFilmIdAction(id) {
+    dispatch(fetchFilmId(id));
+  },
+  loadedReviewsAction(id) {
+    dispatch(fetchReviews(id));
+  },
+});
+
 export {Film};
-export default connect(mapStateToProps)(Film);
+export default connect(mapStateToProps, mapDispatchToProps)(Film);
