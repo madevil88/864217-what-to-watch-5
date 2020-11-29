@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MyList render correctly 1`] = `
+<div
+  className="user-page"
+>
+  <header
+    className="page-header user-page__head"
+  >
+    <div
+      className="logo"
+    >
+      <Link
+        className="logo__link"
+        to="/"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </Link>
+    </div>
+    <h1
+      className="page-title user-page__title"
+    >
+      My list
+    </h1>
+    <Memo(Connect(UserBlock)) />
+  </header>
+  <section
+    className="catalog"
+  >
+    <h2
+      className="catalog__title visually-hidden"
+    >
+      Catalog
+    </h2>
+    <div
+      className="catalog__movies-list"
+    >
+      <WithActiveItem
+        filteredFilms={
+          Array [
+            Object {
+              "background_color": "#73B39A",
+              "background_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg",
+              "description": "A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.",
+              "director": "Nicolas Winding Refn",
+              "genre": "Action",
+              "id": 1,
+              "is_favorite": false,
+              "name": "Bronson",
+              "poster_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg",
+              "preview_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg",
+              "preview_video_link": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+              "rating": 3.6,
+              "released": 2008,
+              "run_time": 92,
+              "scores_count": 109661,
+              "starring": Array [
+                "Tom Hardy",
+                "Kelly Adams",
+                "Luing Andrews",
+              ],
+              "video_link": "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
+            },
+            Object {
+              "background_color": "#795433",
+              "background_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Pulp_Fiction.jpg",
+              "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+              "director": "Quentin Tarantino",
+              "genre": "Crime",
+              "id": 2,
+              "is_favorite": true,
+              "name": "Pulp Fiction",
+              "poster_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Pulp_Fiction.jpg",
+              "preview_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/pulp-fiction.jpg",
+              "preview_video_link": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+              "rating": 1.5,
+              "released": 1994,
+              "run_time": 153,
+              "scores_count": 1635992,
+              "starring": Array [
+                "John Travolta",
+                "Uma Thurman",
+                "Samuel L. Jackson",
+              ],
+              "video_link": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+            },
+          ]
+        }
+      />
+    </div>
+  </section>
+  <footer
+    className="page-footer"
+  >
+    <div
+      className="logo"
+    >
+      <Link
+        className="logo__link logo__link--light"
+        to="/"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </Link>
+    </div>
+    <div
+      className="copyright"
+    >
+      <p>
+        © 2019 What to watch Ltd.
+      </p>
+    </div>
+  </footer>
+</div>
+`;

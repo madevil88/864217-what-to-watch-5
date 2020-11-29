@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should FilmDetails render correctly 1`] = `
+<React.Fragment>
+  <div
+    className="movie-card__text movie-card__row"
+  >
+    <div
+      className="movie-card__text-col"
+    >
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Director
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          Nicolas Winding Refn
+        </span>
+      </p>
+      <div
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Starring
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          <ul
+            style={
+              Object {
+                "listStyle": "none",
+                "margin": "0",
+                "padding": "0",
+              }
+            }
+          >
+            <li>
+              Tom Hardy
+              , 
+              <br />
+            </li>
+            <li>
+              Kelly Adams
+              , 
+              <br />
+            </li>
+            <li>
+              Luing Andrews
+              , 
+              <br />
+            </li>
+          </ul>
+        </span>
+      </div>
+    </div>
+    <div
+      className="movie-card__text-col"
+    >
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Run Time
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          1h 32m
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Genre
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          Action
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Released
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          2008
+        </span>
+      </p>
+    </div>
+  </div>
+</React.Fragment>
+`;

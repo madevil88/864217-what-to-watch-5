@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MovieCard render correctly 1`] = `
+<article
+  className="small-movie-card catalog__movies-card"
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  <WithVideo
+    activeItem={1}
+    film={
+      Object {
+        "background_color": "#795433",
+        "background_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Pulp_Fiction.jpg",
+        "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        "director": "Quentin Tarantino",
+        "genre": "Crime",
+        "id": 2,
+        "is_favorite": true,
+        "name": "Pulp Fiction",
+        "poster_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Pulp_Fiction.jpg",
+        "preview_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/pulp-fiction.jpg",
+        "preview_video_link": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+        "rating": 1.5,
+        "released": 1994,
+        "run_time": 153,
+        "scores_count": 1635992,
+        "starring": Array [
+          "John Travolta",
+          "Uma Thurman",
+          "Samuel L. Jackson",
+        ],
+        "video_link": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+      }
+    }
+    id={1}
+    isPlaying={true}
+  />
+</article>
+`;

@@ -2,7 +2,7 @@ import React from "react";
 import MainProps from "../main/main-props";
 import CreateReview from "../create-review/create-review";
 
-const FilmReviews = (props) => {
+const Reviews = (props) => {
   const {reviews} = props;
 
   return (
@@ -43,6 +43,6 @@ const FilmReviews = (props) => {
   );
 };
 
-FilmReviews.propTypes = MainProps.propTypes;
+Reviews.propTypes = MainProps.propTypes;
 
-export default FilmReviews;
+export default Reviews;

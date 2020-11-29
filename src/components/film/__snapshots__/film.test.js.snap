@@ -1,0 +1,298 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Film render correctly 1`] = `
+<React.Fragment>
+  <section
+    className="movie-card movie-card--full"
+    style={
+      Object {
+        "backgroundColor": "#73B39A",
+      }
+    }
+  >
+    <div
+      className="movie-card__hero"
+    >
+      <div
+        className="movie-card__bg"
+      >
+        <img
+          alt="Bronson"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
+        />
+      </div>
+      <h1
+        className="visually-hidden"
+      >
+        WTW
+      </h1>
+      <header
+        className="page-header movie-card__head"
+      >
+        <div
+          className="logo"
+        >
+          <Link
+            className="logo__link"
+            to="/"
+          >
+            <span
+              className="logo__letter logo__letter--1"
+            >
+              W
+            </span>
+            <span
+              className="logo__letter logo__letter--2"
+            >
+              T
+            </span>
+            <span
+              className="logo__letter logo__letter--3"
+            >
+              W
+            </span>
+          </Link>
+        </div>
+        <Memo(Connect(UserBlock)) />
+      </header>
+      <div
+        className="movie-card__wrap"
+      >
+        <div
+          className="movie-card__desc"
+        >
+          <h2
+            className="movie-card__title"
+          >
+            Bronson
+          </h2>
+          <p
+            className="movie-card__meta"
+          >
+            <span
+              className="movie-card__genre"
+            >
+              Action
+            </span>
+            <span
+              className="movie-card__year"
+            >
+              2008
+            </span>
+          </p>
+          <div
+            className="movie-card__buttons"
+          >
+            <Link
+              className="btn btn--play movie-card__button"
+              to="/player/1"
+            >
+              <svg
+                height="19"
+                viewBox="0 0 19 19"
+                width="19"
+              >
+                <use
+                  xlinkHref="#play-s"
+                />
+              </svg>
+              <span>
+                Play
+              </span>
+            </Link>
+            <WithActiveItem
+              id={1}
+              initialActiveItem={false}
+              updateData={[Function]}
+            />
+            <Link
+              className="btn movie-card__button"
+              to="/films/1/review"
+            >
+              Add review
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="movie-card__wrap movie-card__translate-top"
+    >
+      <div
+        className="movie-card__info"
+      >
+        <div
+          className="movie-card__poster movie-card__poster--big"
+        >
+          <img
+            alt="Bronson"
+            height="327"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg"
+            width="218"
+          />
+        </div>
+        <div
+          className="movie-card__desc"
+        >
+          <WithActiveItem
+            film={
+              Object {
+                "background_color": "#73B39A",
+                "background_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg",
+                "description": "A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.",
+                "director": "Nicolas Winding Refn",
+                "genre": "Action",
+                "id": 1,
+                "is_favorite": false,
+                "name": "Bronson",
+                "poster_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg",
+                "preview_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg",
+                "preview_video_link": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+                "rating": 3.6,
+                "released": 2008,
+                "run_time": 92,
+                "scores_count": 109661,
+                "starring": Array [
+                  "Tom Hardy",
+                  "Kelly Adams",
+                  "Luing Andrews",
+                ],
+                "video_link": "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
+              }
+            }
+            reviews={
+              Array [
+                Object {
+                  "comment": "This movie is just plain bad. There must be some big payola going round this awards season.",
+                  "date": "2020-11-24T16:25:11.950Z",
+                  "id": 1,
+                  "rating": 4,
+                  "user": Object {
+                    "id": 1,
+                    "name": "Emely",
+                  },
+                },
+                Object {
+                  "comment": "I personally found this movie to be boring.",
+                  "date": "2020-11-27T21:02:38.606Z",
+                  "id": 2,
+                  "rating": 3,
+                  "user": Object {
+                    "id": 3,
+                    "name": "Max",
+                  },
+                },
+              ]
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    className="page-content"
+  >
+    <section
+      className="catalog catalog--like-this"
+    >
+      <h2
+        className="catalog__title"
+      >
+        More like this
+      </h2>
+      <div
+        className="catalog__movies-list"
+      >
+        <WithActiveItem
+          filmsCount={4}
+          filteredFilms={
+            Array [
+              Object {
+                "background_color": "#73B39A",
+                "background_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg",
+                "description": "A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.",
+                "director": "Nicolas Winding Refn",
+                "genre": "Action",
+                "id": 1,
+                "is_favorite": false,
+                "name": "Bronson",
+                "poster_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg",
+                "preview_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg",
+                "preview_video_link": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+                "rating": 3.6,
+                "released": 2008,
+                "run_time": 92,
+                "scores_count": 109661,
+                "starring": Array [
+                  "Tom Hardy",
+                  "Kelly Adams",
+                  "Luing Andrews",
+                ],
+                "video_link": "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
+              },
+              Object {
+                "background_color": "#795433",
+                "background_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Pulp_Fiction.jpg",
+                "description": "The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+                "director": "Quentin Tarantino",
+                "genre": "Crime",
+                "id": 2,
+                "is_favorite": true,
+                "name": "Pulp Fiction",
+                "poster_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Pulp_Fiction.jpg",
+                "preview_image": "https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/pulp-fiction.jpg",
+                "preview_video_link": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+                "rating": 1.5,
+                "released": 1994,
+                "run_time": 153,
+                "scores_count": 1635992,
+                "starring": Array [
+                  "John Travolta",
+                  "Uma Thurman",
+                  "Samuel L. Jackson",
+                ],
+                "video_link": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+              },
+            ]
+          }
+        />
+      </div>
+    </section>
+    <footer
+      className="page-footer"
+    >
+      <div
+        className="logo"
+      >
+        <Link
+          className="logo__link logo__link--light"
+          to="/"
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </Link>
+      </div>
+      <div
+        className="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>
+</React.Fragment>
+`;

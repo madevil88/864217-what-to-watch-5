@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Player render correctly 1`] = `
+<div
+  className="player"
+>
+  <video
+    autoPlay={true}
+    className="player__video"
+    controls={true}
+    poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg"
+    src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
+  />
+  <Link
+    className="player__exit"
+    to="/films/1"
+  >
+    Exit
+  </Link>
+</div>
+`;

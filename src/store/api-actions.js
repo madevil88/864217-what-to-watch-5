@@ -59,6 +59,8 @@ const fetchReviews = (id) => (dispatch, _getState, api) => (
 
 const isFavoriteFilm = (filmiId, status) => (dispatch, _getState, api) => (
   api.post(`/favorite/${filmiId}/${status}`, {filmiId, status})
+    .then(() => dispatch(fetchPromoFilm()))
+    .then(() => dispatch(fetchFilmId(filmiId)))
 );
 
 export {fetchFilmList,

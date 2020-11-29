@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Reviews render correctly 1`] = `
+<React.Fragment>
+  <div
+    className="movie-card__reviews movie-card__row"
+  >
+    <div
+      className="movie-card__reviews-col"
+    >
+      <React.Fragment>
+        <CreateReview
+          review={
+            Object {
+              "comment": "This movie is just plain bad. There must be some big payola going round this awards season.",
+              "date": "2020-11-24T16:25:11.950Z",
+              "id": 1,
+              "rating": 4,
+              "user": Object {
+                "id": 1,
+                "name": "Emely",
+              },
+            }
+          }
+        />
+      </React.Fragment>
+    </div>
+    <div
+      className="movie-card__reviews-col"
+    >
+      <React.Fragment>
+        <CreateReview
+          review={
+            Object {
+              "comment": "I personally found this movie to be boring.",
+              "date": "2020-11-27T21:02:38.606Z",
+              "id": 2,
+              "rating": 3,
+              "user": Object {
+                "id": 3,
+                "name": "Max",
+              },
+            }
+          }
+        />
+      </React.Fragment>
+    </div>
+  </div>
+</React.Fragment>
+`;

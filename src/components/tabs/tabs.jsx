@@ -1,14 +1,14 @@
 import React from "react";
 import {TabsMap} from "../../const";
 import MainProps from "../main/main-props";
-import Overview from "../overview/overview";
+import FilmOverview from "../film-overview/film-overview";
 import Details from "../details/details";
 import Reviews from "../reviews/reviews";
 
 const getRenderComponent = (activeId, film, reviews) => {
   switch (activeId) {
     case 0:
-      return <Overview
+      return <FilmOverview
         film={film}
       />;
     case 1:

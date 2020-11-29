@@ -36,7 +36,7 @@ const Film = (props) => {
 
   return (
     <React.Fragment>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{backgroundColor: filmId.background_color}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img src={filmId.background_image} alt={filmId.name} />
@@ -71,11 +71,13 @@ const Film = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <MyListButtonWrapped
-                  id={filmId.id}
-                  initialActiveItem={filmId.is_favorite}
-                  updateData={loadedFilmIdAction}
-                />
+                {(authorizationStatus === AuthorizationStatus.AUTH) &&
+                  <MyListButtonWrapped
+                    id={filmId.id}
+                    initialActiveItem={filmId.is_favorite}
+                    updateData={loadedFilmIdAction}
+                  />
+                }
                 {(authorizationStatus === AuthorizationStatus.AUTH) &&
                   <Link to={`/films/${filmId.id}/review`} className="btn movie-card__button">Add review</Link>}
               </div>

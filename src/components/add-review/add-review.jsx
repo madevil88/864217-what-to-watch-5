@@ -15,10 +15,10 @@ const AddReview = (props) => {
   const currentFilm = films.allFilms[id - 1];
 
   return (
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={{backgroundColor: currentFilm.background_color}}>
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={currentFilm.background_image} alt={currentFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>

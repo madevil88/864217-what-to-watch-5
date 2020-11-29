@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should ListOfGenres render correctly 1`] = `
+<ul
+  className="catalog__genres-list"
+>
+  <li
+    className="catalog__genres-item"
+  >
+    <span
+      className="catalog__genres-link"
+      onClick={[Function]}
+    >
+      All genres
+    </span>
+  </li>
+  <li
+    className="catalog__genres-item"
+  >
+    <span
+      className="catalog__genres-link"
+      onClick={[Function]}
+    >
+      Action
+    </span>
+  </li>
+  <li
+    className="catalog__genres-item catalog__genres-item--active"
+  >
+    <span
+      className="catalog__genres-link"
+      onClick={[Function]}
+    >
+      Crime
+    </span>
+  </li>
+</ul>
+`;

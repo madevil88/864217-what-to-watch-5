@@ -1,13 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {AuthorizationStatus} from "../../const";
 import {getSelectedGenre,
   incrementFilmsCount} from "../../store/action";
 import {getFilteredFilms,
   getFilms,
   getCurrentGenre,
   getFilmsCount,
-  getPromoFilm} from "../../store/selectors";
+  getPromoFilm,
+  getAuthorizationStatus} from "../../store/selectors";
 import {fetchPromoFilm} from "../../store/api-actions";
 import MainProps from "./main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
@@ -26,7 +28,8 @@ const Main = (props) => {
     getShowMoreStatusAction,
     currentGenre,
     promoFilm,
-    fetchPromoFilmAction} = props;
+    fetchPromoFilmAction,
+    authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -64,11 +67,13 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <MyListButtonWrapped
-                  id={promoFilm.id}
-                  initialActiveItem={promoFilm.is_favorite}
-                  updateData={fetchPromoFilmAction}
-                />
+                {(authorizationStatus === AuthorizationStatus.AUTH) &&
+                  <MyListButtonWrapped
+                    id={promoFilm.id}
+                    initialActiveItem={promoFilm.is_favorite}
+                    updateData={fetchPromoFilmAction}
+                  />
+                }
               </div>
             </div>
           </div>
@@ -77,13 +82,11 @@ const Main = (props) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ul className="catalog__genres-list">
-            <ListOfGenres
-              allFilms={films.allFilms}
-              getSelectedGenre={getSelectedGenreAction}
-              currentGenre={currentGenre}
-            />
-          </ul>
+          <ListOfGenres
+            allFilms={films.allFilms}
+            getSelectedGenre={getSelectedGenreAction}
+            currentGenre={currentGenre}
+          />
           <div className="catalog__movies-list">
             <ListOfFilms
               filteredFilms={films.filteredFilms}
@@ -120,7 +123,8 @@ const mapStateToProps = (state) => ({
   },
   currentGenre: getCurrentGenre(state),
   filmsCount: getFilmsCount(state),
-  promoFilm: getPromoFilm(state)
+  promoFilm: getPromoFilm(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
