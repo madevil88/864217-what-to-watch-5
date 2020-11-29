@@ -186,4 +186,28 @@ describe(`Async operation work correctly`, () => {
         });
       });
   });
+
+  it(`commentResponseStatus reducer should be add reviewStatus`, () => {
+    expect(loadedData({
+      reviewStatus: ``,
+    }, {
+      type: ActionType.COMMENT_RESPONSE_STATUS,
+      payload: 400,
+    }))
+      .toEqual({
+        reviewStatus: 400,
+      });
+  });
+
+  it(`loginResponseStatus reducer should be add loginStatus`, () => {
+    expect(loadedData({
+      loginStatus: ``,
+    }, {
+      type: ActionType.LOGIN_RESPONSE_STATUS,
+      payload: 400,
+    }))
+      .toEqual({
+        loginStatus: 400,
+      });
+  });
 });
