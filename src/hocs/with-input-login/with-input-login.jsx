@@ -42,3 +42,4 @@ const withInputLogin = (Component) => {
 
 
 export default withInputLogin;
+
