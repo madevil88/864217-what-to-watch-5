@@ -32,7 +32,9 @@ const BACKEND_URL = `https://5.react.pages.academy/wtw`;
 const REQUEST_TIMEOUT = 5000;
 
 const HttpCode = {
-  UNAUTHORIZED: 401
+  UNAUTHORIZED: 401,
+  NOT_FAUND: 404,
+  BAD_REQUEST: 400
 };
 
 const NameSpace = {

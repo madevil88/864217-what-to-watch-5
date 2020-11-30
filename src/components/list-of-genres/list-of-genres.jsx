@@ -25,12 +25,13 @@ const ListOfGenres = (props) => {
               key={i}
               className={currentGenre === genre ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}
             >
-              <span className="catalog__genres-link"
+              <a className="catalog__genres-link"
+                style={{cursor: `pointer`}}
                 onClick={(evt) => {
                   evt.preventDefault();
                   getSelectedGenre(genre);
                 }}
-              >{genre}</span>
+              >{genre}</a>
             </li>
           );
         }

@@ -19,13 +19,19 @@ const fetchFilmId = (id) => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(loadFilmId(data)))
 );
 
-const checkAuth = () => (dispatch, _getState, api) => (
+const checkAuth = () => (dispatch, _getState, api) => {
+  // const currentAuthorizationStatus = _getState().USER.authorizationStatus;
+  // console.log(currentAuthorizationStatus)
+  // if (currentAuthorizationStatus === AuthorizationStatus.AUTH) {
+
+
   api.get(APIRoute.LOGIN)
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-    .catch((err) => {
-      throw err;
-    })
-);
+    .catch(({response})=>
+      dispatch(loginResponseStatus(response.status)))
+
+  // }
+};
 
 const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
@@ -55,6 +61,8 @@ const fetchFavoriteFilms = () => (dispatch, _getState, api) => (
 const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/${id}`)
     .then(({data}) => dispatch(loadReviews(data)))
+    .catch(({response})=>
+      dispatch(commentResponseStatus(response.status)))
 );
 
 const isFavoriteFilm = (filmiId, status) => (dispatch, _getState, api) => (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import MovieCardProps from "./movie-card-props";
 import VideoPlayer from "../video-player/video-player";
 import withVideo from "../../hocs/with-video/with-video";
@@ -7,31 +7,49 @@ const VideoPlayerWrapped = withVideo(VideoPlayer);
 
 const DELAY_MS = 1000;
 
-const MovieCard = (props) => {
-  const {film, id, handleActiveItem, activeItem} = props;
+class MovieCard extends PureComponent {
+  constructor(props) {
+      super(props);
 
-  return (
-    <article className="small-movie-card catalog__movies-card"
-      onMouseOver={() => {
-        setTimeout(() => {
+      let timeoutOnMouseOver = this.timeoutOnMouseOver;
+  }
+
+  componentDidMount() {
+    const {id, handleActiveItem} = this.props;
+    this.handleOnMouseOver = (id) => {
+      this.timeoutOnMouseOver = setTimeout(() => {
           handleActiveItem(id);
         }, DELAY_MS);
-      }}
-      onMouseOut={() => {
-        setTimeout(() => {
+    };
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeoutOnMouseOver);
+  }
+
+  render() {
+    const {film, id, handleActiveItem, activeItem} = this.props;
+
+    return (
+      <article className="small-movie-card catalog__movies-card"
+        onMouseOver={() => {
+          this.handleOnMouseOver(id);
+        }}
+        onMouseOut={() => {
           handleActiveItem();
-        }, DELAY_MS);
-      }}
-    >
-      <VideoPlayerWrapped
-        film={film}
-        id={id}
-        isPlaying={id === activeItem}
-        activeItem={activeItem}
-      />
-    </article>
-  );
-};
+          clearTimeout(this.timeoutOnMouseOver);
+        }}
+      >
+        <VideoPlayerWrapped
+          film={film}
+          id={id}
+          isPlaying={id === activeItem}
+          activeItem={activeItem}
+        />
+      </article>
+    );
+  }
+}
 
 MovieCard.propTypes = MovieCardProps.propTypes;
 

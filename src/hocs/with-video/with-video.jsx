@@ -32,6 +32,19 @@ const withVideo = (Component) => {
       video.oncanplaythrough = null;
     }
 
+    componentDidUpdate() {
+      const video = this._videoRef.current;
+      const {isPlaying} = this.props;
+      const {isLoading} = this.state;
+
+      if (!isLoading && isPlaying) {
+        video.play();
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
+    }
+
     render() {
       const {film, isPlaying} = this.props;
       const {isLoading} = this.state;
@@ -50,19 +63,6 @@ const withVideo = (Component) => {
           ></video>
         </Component>
       );
-    }
-
-    componentDidUpdate() {
-      const video = this._videoRef.current;
-      const {isPlaying} = this.props;
-      const {isLoading} = this.state;
-
-      if (!isLoading && isPlaying) {
-        video.play();
-      } else {
-        video.pause();
-        video.currentTime = 0;
-      }
     }
   }
 

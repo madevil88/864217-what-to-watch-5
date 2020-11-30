@@ -1,11 +1,12 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {AppRoute, AuthorizationStatus} from "../../const";
+import {AppRoute, AuthorizationStatus, HttpCode} from "../../const";
 import {getFilteredFilms,
   getReviews,
   getFilmId,
-  getAuthorizationStatus} from "../../store/selectors";
+  getAuthorizationStatus,
+  getReviewStatus} from "../../store/selectors";
 import MainProps from "../main/main-props";
 import ListOfFilms from "../list-of-films/list-of-films";
 import Tabs from "../tabs/tabs";
@@ -27,13 +28,19 @@ const Film = (props) => {
     filmId,
     authorizationStatus,
     loadedFilmIdAction,
-    loadedReviewsAction} = props;
+    loadedReviewsAction,
+    reviewStatus} = props;
 
   useEffect(()=> {
     loadedFilmIdAction(id);
     loadedReviewsAction(id);
   }, [id]);
 
+if (reviewStatus === HttpCode.BAD_REQUEST) {
+  return (
+    <div>MOVIE_NOT_FOUND</div>
+    );
+} else {
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full" style={{backgroundColor: filmId.background_color}}>
@@ -91,10 +98,15 @@ const Film = (props) => {
               <img src={filmId.poster_image} alt={filmId.name} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
+            {
+              // console.log(filmId)
+            }
+            {
               <TabsWrapped
                 film={filmId}
                 reviews={reviews}
               />
+            }
             </div>
           </div>
         </div>
@@ -128,6 +140,8 @@ const Film = (props) => {
       </div>
     </React.Fragment>
   );
+}
+
 };
 
 Film.propTypes = MainProps.propTypes;
@@ -139,6 +153,7 @@ const mapStateToProps = (state) => ({
   filmId: getFilmId(state),
   reviews: getReviews(state),
   authorizationStatus: getAuthorizationStatus(state),
+  reviewStatus: getReviewStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

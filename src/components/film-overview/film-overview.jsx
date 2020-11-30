@@ -53,9 +53,9 @@ const FilmOverview = (props) => {
         <p>{film.description}</p>
         <p className="movie-card__director"><strong>Director: {film.director}</strong></p>
 
-        <p className="movie-card__starring"><strong>Starring: {film.starring.map((star) => (
-          star
-        )).join(`, `)}</strong></p>
+        <p className="movie-card__starring"><strong>Starring: {
+          film ? film.starring.slice().join(`, `) : null
+        }</strong></p>
       </div>
     </React.Fragment>
   );
