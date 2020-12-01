@@ -47,6 +47,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     favoriteFilms: [],
     reviewStatus: ``,
     loginStatus: ``,
+    loadFilmStatus: ``
   });
 });
 
@@ -204,10 +205,22 @@ describe(`Async operation work correctly`, () => {
       loginStatus: ``,
     }, {
       type: ActionType.LOGIN_RESPONSE_STATUS,
-      payload: 400,
+      payload: 401,
     }))
       .toEqual({
-        loginStatus: 400,
+        loginStatus: 401,
+      });
+  });
+
+  it(`loadFilmResponsStatus reducer should be add loadFilmStatus`, () => {
+    expect(loadedData({
+      loadFilmStatus: ``,
+    }, {
+      type: ActionType.LOAD_FILM_STATUS,
+      payload: 404,
+    }))
+      .toEqual({
+        loadFilmStatus: 404,
       });
   });
 });

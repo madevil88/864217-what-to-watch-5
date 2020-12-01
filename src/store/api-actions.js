@@ -6,7 +6,8 @@ import {loadFilms,
   loginResponseStatus,
   loadPromoFilm,
   loadFavoriteFilms,
-  loadReviews} from "./action";
+  loadReviews,
+  loadFilmResponsStatus} from "./action";
 import {AuthorizationStatus, AppRoute, APIRoute} from "../const";
 
 const fetchFilmList = () => (dispatch, _getState, api) => (
@@ -17,21 +18,16 @@ const fetchFilmList = () => (dispatch, _getState, api) => (
 const fetchFilmId = (id) => (dispatch, _getState, api) => (
   api.get(`/films/${id}`)
     .then(({data}) => dispatch(loadFilmId(data)))
+    .catch(({response})=>
+      dispatch(loadFilmResponsStatus(response.status)))
 );
 
-const checkAuth = () => (dispatch, _getState, api) => {
-  // const currentAuthorizationStatus = _getState().USER.authorizationStatus;
-  // console.log(currentAuthorizationStatus)
-  // if (currentAuthorizationStatus === AuthorizationStatus.AUTH) {
-
-
+const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(({response})=>
       dispatch(loginResponseStatus(response.status)))
-
-  // }
-};
+);
 
 const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})

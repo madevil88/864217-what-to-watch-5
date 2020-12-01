@@ -9,6 +9,7 @@ const initialState = {
   favoriteFilms: [],
   reviewStatus: ``,
   loginStatus: ``,
+  loadFilmStatus: ``,
 };
 
 const loadedData = (state = initialState, action) => {
@@ -40,6 +41,10 @@ const loadedData = (state = initialState, action) => {
     case ActionType.LOAD_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: action.payload,
+      });
+    case ActionType.LOAD_FILM_STATUS:
+      return extend(state, {
+        loadFilmStatus: action.payload,
       });
   }
 

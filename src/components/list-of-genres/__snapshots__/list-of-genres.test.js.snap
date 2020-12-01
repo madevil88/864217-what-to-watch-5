@@ -7,32 +7,47 @@ exports[`Should ListOfGenres render correctly 1`] = `
   <li
     className="catalog__genres-item"
   >
-    <span
+    <a
       className="catalog__genres-link"
       onClick={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+        }
+      }
     >
       All genres
-    </span>
+    </a>
   </li>
   <li
     className="catalog__genres-item"
   >
-    <span
+    <a
       className="catalog__genres-link"
       onClick={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+        }
+      }
     >
       Action
-    </span>
+    </a>
   </li>
   <li
     className="catalog__genres-item catalog__genres-item--active"
   >
-    <span
+    <a
       className="catalog__genres-link"
       onClick={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+        }
+      }
     >
       Crime
-    </span>
+    </a>
   </li>
 </ul>
 `;

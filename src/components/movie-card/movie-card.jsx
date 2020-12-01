@@ -9,17 +9,15 @@ const DELAY_MS = 1000;
 
 class MovieCard extends PureComponent {
   constructor(props) {
-      super(props);
-
-      let timeoutOnMouseOver = this.timeoutOnMouseOver;
+    super(props);
   }
 
   componentDidMount() {
-    const {id, handleActiveItem} = this.props;
+    const {handleActiveItem} = this.props;
     this.handleOnMouseOver = (id) => {
       this.timeoutOnMouseOver = setTimeout(() => {
-          handleActiveItem(id);
-        }, DELAY_MS);
+        handleActiveItem(id);
+      }, DELAY_MS);
     };
   }
 

@@ -70,6 +70,11 @@ const loadReviews = (reviews) => ({
   payload: reviews,
 });
 
+const loadFilmResponsStatus = (status) => ({
+  type: ActionType.LOAD_FILM_STATUS,
+  payload: status,
+});
+
 export {ActionType,
   getSelectedGenre,
   incrementFilmsCount,
@@ -81,4 +86,5 @@ export {ActionType,
   loginResponseStatus,
   loadPromoFilm,
   loadFavoriteFilms,
-  loadReviews};
+  loadReviews,
+  loadFilmResponsStatus};

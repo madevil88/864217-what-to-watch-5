@@ -50,6 +50,10 @@ const getFavoriteFilms = (state) => {
   return state.DATA.favoriteFilms;
 };
 
+const getLoadFilmStatus = (state) => {
+  return state.DATA.loadFilmStatus;
+};
+
 export {getFilms,
   getFilteredFilms,
   getFilmId,
@@ -60,4 +64,5 @@ export {getFilms,
   getReviewStatus,
   getLoginStatus,
   getPromoFilm,
-  getFavoriteFilms};
+  getFavoriteFilms,
+  getLoadFilmStatus};

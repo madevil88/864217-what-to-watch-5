@@ -10,9 +10,7 @@ import {createAPI} from "./services/api";
 import {requireAuthorization} from "./store/action";
 import {fetchFilmList,
   checkAuth,
-  fetchFilmId,
-  fetchPromoFilm,
-  fetchReviews} from "./store/api-actions";
+  fetchPromoFilm} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 import {redirect} from "./store/middlewares/redirect";
 
