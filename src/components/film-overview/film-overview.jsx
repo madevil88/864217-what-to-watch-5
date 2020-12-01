@@ -2,7 +2,7 @@ import React from "react";
 import {FilmStatus} from "../../const";
 import MainProps from "../main/main-props";
 
-const filmStatusMap = [
+const filmStatusMaps = [
   {
     min: 0,
     max: 3,
@@ -28,7 +28,7 @@ const filmStatusMap = [
 
 const getFilmStatus = (rating) => {
   let status;
-  filmStatusMap.forEach((condition) => {
+  filmStatusMaps.forEach((condition) => {
     if (rating >= condition.min && rating < condition.max) {
       status = condition.status;
     }
